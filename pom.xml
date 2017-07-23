@@ -19,7 +19,7 @@
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>compile</goal>
                         </goals>
                         <configuration>
                             <artifactItems>
