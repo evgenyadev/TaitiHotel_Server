@@ -18,6 +18,9 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
+					<processTypes>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* ApiServiceV1</web>
+					</processTypes>
                 </configuration>
             </plugin>
         </plugins>
