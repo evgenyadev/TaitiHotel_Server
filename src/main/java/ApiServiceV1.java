@@ -185,7 +185,10 @@ public class ApiServiceV1 {
         List<Map<String, Object>> rooms;
         try {
             rooms = SQLiteClass.roomSearchByRange(checkIn, checkOut);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
@@ -205,7 +208,10 @@ public class ApiServiceV1 {
         List<Map<String, Object>> prices;
         try {
             prices = SQLiteClass.priceGetAll();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
