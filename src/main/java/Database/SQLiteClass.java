@@ -105,7 +105,7 @@ public class SQLiteClass {
         try {
             rSet = statement.executeQuery("SELECT pseudo_id,name,phone_num FROM devices");
             while (rSet.next()) {
-                Map<String, Object> cUser = new HashMap<>();
+                Map<String, Object> cUser = new HashMap<String, Object>();
                 cUser.put("pseudo_id", rSet.getString("pseudo_id"));
                 cUser.put("name", rSet.getString("name"));
                 cUser.put("phone_num", rSet.getString("phone_num"));
@@ -136,7 +136,7 @@ public class SQLiteClass {
         PreparedStatement pStatement;
         ResultSet rSet = null;
 
-        Map<String, Object> room = new HashMap<>();
+        Map<String, Object> room = new HashMap<String, Object>();
         pStatement = conn.prepareStatement("SELECT rooms.id, room_types.capacity, rooms.floor, rooms.room_type, room_types.description\n" +
                 "FROM rooms INNER JOIN room_types ON rooms.room_type = room_types.type WHERE rooms.id = (?)");
         pStatement.setInt(1, id);
@@ -162,11 +162,11 @@ public class SQLiteClass {
 
         pStatement = conn.prepareStatement("SELECT rooms.id, room_types.capacity, rooms.floor, rooms.room_type, room_types.description " +
                 "FROM rooms INNER JOIN room_types ON rooms.room_type = room_types.type");
-        List<Map<String, Object>> rooms = new ArrayList<>();
+        List<Map<String, Object>> rooms = new ArrayList<Map<String, Object>>();
         try {
             rSet = pStatement.executeQuery();
             while (rSet.next()) {
-                Map<String, Object> cRoom = new HashMap<>();
+                Map<String, Object> cRoom = new HashMap<String, Object>();
                 putRoomData(cRoom, rSet);
                 rooms.add(cRoom);
             }
@@ -211,7 +211,7 @@ public class SQLiteClass {
     }
 
     public static List<Map<String, Object>> roomSearchByRange(String strCheckIn, String strCheckOut) throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> rooms = new ArrayList<>();
+        List<Map<String, Object>> rooms = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();
         PreparedStatement pStatement;
@@ -251,7 +251,7 @@ public class SQLiteClass {
         try {
             rSet = pStatement.executeQuery();
             while (rSet.next()) {
-                Map<String, Object> cRoom = new HashMap<>();
+                Map<String, Object> cRoom = new HashMap<String, Object>();
                 cRoom.put("capacity", rSet.getInt("capacity"));
                 cRoom.put("count", rSet.getInt("count"));
                 cRoom.put("room_type", rSet.getString("room_type"));
@@ -267,7 +267,7 @@ public class SQLiteClass {
     }
 
     public static List<Map<String, Object>> priceGetAll() throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> prices = new ArrayList<>();
+        List<Map<String, Object>> prices = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();
         Statement statement;
@@ -279,7 +279,7 @@ public class SQLiteClass {
             rSet = statement.executeQuery("SELECT * FROM prices");
 
             while (rSet.next()) {
-                Map<String, Object> row = new HashMap<>();
+                Map<String, Object> row = new HashMap<String, Object>();
                 row.put("room_type", rSet.getString("room_type"));
                 row.put("may", rSet.getInt("may"));
                 row.put("june", rSet.getInt("june"));
