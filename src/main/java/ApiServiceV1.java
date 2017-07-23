@@ -260,7 +260,10 @@ public class ApiServiceV1 {
         // добавить заказ в базу
         try {
             SQLiteClass.orderAdd(name, phone, time_from, time_to, orderedRoomsData);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
