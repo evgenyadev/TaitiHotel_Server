@@ -101,10 +101,13 @@ public class ApiServiceV1 {
         List<Map<String, Object>> users;
         try {
             users = SQLiteClass.userGetAll();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        }
+        } catch (ClassNotFoundException e) {
+			e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+		}
         for (Map<String, Object> user : users) {
             response.append("users", user);
         }
