@@ -79,7 +79,7 @@ public class SQLiteClass {
 
         pStatement = conn.prepareStatement("SELECT name,phone_num FROM devices WHERE pseudo_id = (?)");
         pStatement.setString(1, pseudoId);
-        Map<String, Object> response = new HashMap<>();
+        Map<String, Object> response = new HashMap<String, Object>();
         try {
             rSet = pStatement.executeQuery();
             if (rSet.next()) {

@@ -224,7 +224,7 @@ public class ApiServiceV1 {
         String phone;
         int time_from;
         int time_to;
-        List<OrderedRoomData> orderedRoomsData = new ArrayList<>();
+        List<OrderedRoomData> orderedRoomsData = new ArrayList<OrderedRoomData>();
 
         // разобрать данные по переменным
         try {
