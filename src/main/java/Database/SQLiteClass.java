@@ -96,7 +96,7 @@ public class SQLiteClass {
     }
 
     public static List<Map<String, Object>> userGetAll() throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> users = new ArrayList<>();
+        List<Map<String, Object>> users = new ArrayList<new HashMap<String, Object>();
 
         Connection conn = getConnection();
         Statement statement = conn.createStatement();
