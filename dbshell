@@ -1,0 +1,2 @@
+#!/bin/bash
+PGPASSWORD=0995f80e1157b5d0673cf0b3ee3535a27a31dd2ec78763ab63c7da5fad85b43e psql -h ec2-107-21-113-16.compute-1.amazonaws.com -p 5432 -U eoqylrhibqukct d55fo9tltbmi0
