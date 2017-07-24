@@ -110,7 +110,6 @@ public class ApiServiceV1 {
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
 		}
 		
-        jsonObject.put("info", "Api v1 working.");
 		jsonObject.put("v", version);
 
         return Response.status(Response.Status.OK).entity(jsonObject.toString()).build();
