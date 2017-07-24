@@ -191,7 +191,7 @@ CREATE TABLE "devices" (
 	"name"	TEXT,
 	PRIMARY KEY("id")
 );
-INSERT INTO "devices" (id,pseudo_id,phone_num,name) VALUES (1,'710f9449da83946b40e2fecf284ca1b3','+380994386123','V1277'),
+INSERT INTO "devices" (id,pseudo_id,phone_num,name) VALUES (1,'710f9449da83946b40e2fecf284ca1b3','+380994386321','V1277'),
  (2,'9702e7f2e676927cb5ee6902caf7ec5a','15555218135','Custom Phone - 7.1.0 - API 25 - 768x1280'),
  (3,'1913b8f16a4cfba4626ddb775f66f067','15555215554','Google Nexus S - 4.1.1 - API 16');
 COMMIT;
