@@ -261,7 +261,7 @@ public class SQLiteClass {
                         "WHERE NOT EXISTS " +
                         "(SELECT * " +
                         "FROM rooms_ordered " +
-                        "WHERE (date_begin < ? AND date_end > ?) " +
+                        "WHERE (date_begin::text < ? AND date_end::text > ?) " +
                         "AND rooms_ordered.room_id = rooms.id) " +
                         "GROUP BY rooms.room_type " +
                         "ORDER BY room_types.id");
