@@ -65,6 +65,7 @@
 	</properties>
 
     <build>
+        <sourceDirectory>src</sourceDirectory>
 		<finalName>embeddedTomcatSample</finalName>
 		<plugins>
 			<plugin>
