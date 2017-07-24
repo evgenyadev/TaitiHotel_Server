@@ -1,4 +1,4 @@
-﻿package main.java;
+package main.java;
 
 import main.java.Database.SQLiteClass;
 import main.java.data.OrderedRoomData;
@@ -282,5 +282,3 @@ public class ApiServiceV1 {
         return Response.ok("{\"info\":\"Order added.\"}").build();
     }
 }
-
-
