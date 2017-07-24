@@ -12,7 +12,7 @@ public class SQLiteClass {
     public static final int REQUEST_FAILED = -1;
     public static final int REQUEST_SUCCESS = 1;
 
-    private static Connection getConnection() throws URISyntaxException, SQLException {
+    private static Connection getConnection() throws SQLException {
 		String dbUrl = System.getenv("JDBC_DATABASE_URL");
 		return DriverManager.getConnection(dbUrl);
 	}
@@ -73,7 +73,7 @@ public class SQLiteClass {
 	public static String version() throws SQLException, ClassNotFoundException  {
 		Connection conn = getConnection();
 		Statement statement = conn.createStatement();
-		ResultSet rRset = null;
+		ResultSet rSet = null;
 		
 		String version;
 		try {
