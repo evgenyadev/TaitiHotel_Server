@@ -12,10 +12,10 @@ public class SQLiteClass {
     public static final int REQUEST_FAILED = -1;
     public static final int REQUEST_SUCCESS = 1;
 
-    private static Connection getConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("org.sqlite.JDBC");
-        return DriverManager.getConnection("jdbc:sqlite:TaitiDB.db3");
-    }
+    private static Connection getConnection() throws URISyntaxException, SQLException {
+		String dbUrl = System.getenv("JDBC_DATABASE_URL");
+		return DriverManager.getConnection(dbUrl);
+	}
 
     private static void closeConnection(Connection conn) throws SQLException {
         conn.close();
@@ -69,6 +69,27 @@ public class SQLiteClass {
 
         return res;
     }
+	
+	public static String version() throws SQLException, ClassNotFoundException  {
+		Connection conn = getConnection();
+		Statement statement = conn.createStatement();
+		ResultSet rRset = null;
+		
+		String version;
+		try {
+            rSet = statement.executeQuery("SELECT version() as version");
+            if (rSet.next()) {
+                version = rSet.getString("version");
+            } else 
+				version = "null";
+        } finally {
+            if (rSet != null && !rSet.isClosed()) rSet.close();
+            if (statement != null && !statement.isClosed()) statement.close();
+            if (!conn.isClosed()) closeConnection(conn);
+        }
+		
+		return version;
+	}
 
     @Deprecated
     public static Map<String, Object> userGetInfo(String pseudoId) throws SQLException, ClassNotFoundException {

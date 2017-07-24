@@ -99,6 +99,17 @@ public class ApiServiceV1 {
     public Response info() {
         JSONObject jsonObject = new JSONObject();
 
+		String version = null;
+		try {
+			version = SQLiteClass.version();
+		} catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        } catch (ClassNotFoundException e) {
+			e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+		}
+		
         jsonObject.put("info", "Api v1 working.");
 
         return Response.status(Response.Status.OK).entity(jsonObject.toString()).build();
