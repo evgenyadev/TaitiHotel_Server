@@ -1,4 +1,4 @@
-package main.java;
+﻿package main.java;
 
 import main.java.Database.SQLiteClass;
 import main.java.data.OrderedRoomData;
@@ -92,6 +92,17 @@ public class ApiServiceV1 {
 //
 //        return Response.status(Response.Status.OK).entity(jsonObject.toString()).build();
 //    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/info")
+    public Response info() {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("info", "Api v1 working.");
+
+        return Response.status(Response.Status.OK).entity(jsonObject.toString()).build();
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
