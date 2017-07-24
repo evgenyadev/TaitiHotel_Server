@@ -1,13 +1,13 @@
 BEGIN TRANSACTION;
 CREATE TABLE "users_pending"
 (
-    rowid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    rowid INTEGER PRIMARY KEY SERIAL NOT NULL,
     name TEXT NOT NULL,
     phone TEXT NOT NULL,
     time_from INTEGER NOT NULL,
     time_to INTEGER NOT NULL
 );
-INSERT INTO `users_pending` (rowid,name,phone,time_from,time_to) VALUES (39,'Жека','+380 99 438 6000',8,19),
+INSERT INTO "users_pending" (rowid,name,phone,time_from,time_to) VALUES (39,'Жека','+380 99 438 6000',8,19),
  (40,'Василий','343 2111555',8,21),
  (41,'Василий','+380 99 438 6000',8,21),
  (42,'Василий','+380 99 438 6000',8,21),
@@ -28,16 +28,16 @@ INSERT INTO `users_pending` (rowid,name,phone,time_from,time_to) VALUES (39,'Ж�
  (57,'Горский','+380 99 438 2726',22,23),
  (58,'Григорий','+380 99 438 7400',16,19);
 CREATE TABLE "rooms_pending" (
-	`rowid`	INTEGER NOT NULL,
-	`user_id`	INTEGER NOT NULL,
-	`room_type`	TEXT NOT NULL,
-	`rooms_count`	INTEGER NOT NULL DEFAULT 1,
-	`adult_count`	INTEGER NOT NULL DEFAULT 0,
-	`child_3_10_count`	INTEGER NOT NULL DEFAULT 0,
-	`child_3_count`	INTEGER NOT NULL DEFAULT 0,
-	PRIMARY KEY(`rowid`)
+	"rowid"	INTEGER NOT NULL,
+	"user_id"	INTEGER NOT NULL,
+	"room_type"	TEXT NOT NULL,
+	"rooms_count"	INTEGER NOT NULL DEFAULT 1,
+	"adult_count"	INTEGER NOT NULL DEFAULT 0,
+	"child_3_10_count"	INTEGER NOT NULL DEFAULT 0,
+	"child_3_count"	INTEGER NOT NULL DEFAULT 0,
+	PRIMARY KEY("rowid")
 );
-INSERT INTO `rooms_pending` (rowid,user_id,room_type,rooms_count,adult_count,child_3_10_count,child_3_count) VALUES (2,39,'Улучшенный 1',2,10,0,0),
+INSERT INTO "rooms_pending" (rowid,user_id,room_type,rooms_count,adult_count,child_3_10_count,child_3_count) VALUES (2,39,'Улучшенный 1',2,10,0,0),
  (3,40,'Улучшенный 2',1,5,0,5),
  (4,40,'Улучшенный 1',1,2,0,0),
  (5,41,'Улучшенный 2',1,5,0,5),
@@ -65,15 +65,15 @@ INSERT INTO `rooms_pending` (rowid,user_id,room_type,rooms_count,adult_count,chi
  (28,58,'Стандарт',1,3,0,3),
  (29,58,'Улучшенный 1',1,5,0,5);
 CREATE TABLE "rooms_ordered" (
-	`id`	INT NOT NULL,
-	`user_id`	INT NOT NULL,
-	`room_id`	INT NOT NULL,
-	`date_begin`	DATE NOT NULL,
-	`date_end`	DATE NOT NULL,
-	`status`	INT NOT NULL,
-	PRIMARY KEY(`id`)
+	"id"	INT NOT NULL,
+	"user_id"	INT NOT NULL,
+	"room_id"	INT NOT NULL,
+	"date_begin"	DATE NOT NULL,
+	"date_end"	DATE NOT NULL,
+	"status"	INT NOT NULL,
+	PRIMARY KEY("id")
 );
-INSERT INTO `rooms_ordered` (id,user_id,room_id,date_begin,date_end,status) VALUES (4,4,2,'2017-08-16','2017-08-18',1),
+INSERT INTO "rooms_ordered" (id,user_id,room_id,date_begin,date_end,status) VALUES (4,4,2,'2017-08-16','2017-08-18',1),
  (3,3,1,'2017-08-28','2017-08-29',2),
  (2,2,1,'2017-08-23','2017-08-26',1),
  (1,1,1,'2017-08-15','2017-08-19',2),
@@ -123,7 +123,7 @@ CREATE TABLE rooms
     floor INT DEFAULT 1 NOT NULL,
     room_type TEXT NOT NULL
 );
-INSERT INTO `rooms` (id,floor,room_type) VALUES (1,1,'Стандарт'),
+INSERT INTO "rooms" (id,floor,room_type) VALUES (1,1,'Стандарт'),
  (2,2,'Стандарт'),
  (3,1,'Улучшенный 1'),
  (4,2,'Улучшенный 1'),
@@ -132,13 +132,13 @@ INSERT INTO `rooms` (id,floor,room_type) VALUES (1,1,'Стандарт'),
  (7,1,'Двухкомнатный'),
  (8,2,'Двухкомнатный');
 CREATE TABLE "room_types" (
-	`id`	INT,
-	`capacity`	INT NOT NULL,
-	`type`	TEXT NOT NULL UNIQUE,
-	`description`	TEXT NOT NULL,
-	PRIMARY KEY(`id`)
+	"id"	INT,
+	"capacity"	INT NOT NULL,
+	"type"	TEXT NOT NULL UNIQUE,
+	"description"	TEXT NOT NULL,
+	PRIMARY KEY("id")
 );
-INSERT INTO `room_types` (id,capacity,type,description) VALUES (4,6,'Двухкомнатный','Проживние: до 6 человек.  
+INSERT INTO "room_types" (id,capacity,type,description) VALUES (4,6,'Двухкомнатный','Проживние: до 6 человек.  
 Оплачивается ВЕСЬ НОМЕР в сутки.
 
 В номере: евроремонт, 2-х спальная деревянная кровать(ортопедический матрац), мягкий раскладывающийся уголок, плазменный телевизор(кабельное TV), холодильник, кондиционер.
@@ -169,29 +169,29 @@ INSERT INTO `room_types` (id,capacity,type,description) VALUES (4,6,'Двухк�
 
 Удобства: в номере(душ, умывальник, туалет); горячая и холодная вода круглосуточно).');
 CREATE TABLE "prices" (
-	`id`	INT NOT NULL,
-	`room_type`	TEXT NOT NULL UNIQUE,
-	`may`	INT NOT NULL,
-	`june`	INT NOT NULL,
-	`july`	INT NOT NULL,
-	`august`	INT NOT NULL,
-	`september`	INT NOT NULL,
-	`child_3_price`	INT NOT NULL,
-	`child_3_10_discount`	INT NOT NULL,
-	PRIMARY KEY(`id`)
+	"id"	INT NOT NULL,
+	"room_type"	TEXT NOT NULL UNIQUE,
+	"may"	INT NOT NULL,
+	"june"	INT NOT NULL,
+	"july"	INT NOT NULL,
+	"august"	INT NOT NULL,
+	"september"	INT NOT NULL,
+	"child_3_price"	INT NOT NULL,
+	"child_3_10_discount"	INT NOT NULL,
+	PRIMARY KEY("id")
 );
-INSERT INTO `prices` (id,room_type,may,june,july,august,september,child_3_price,child_3_10_discount) VALUES (1,'Стандарт',109,109,219,219,109,40,30),
+INSERT INTO "prices" (id,room_type,may,june,july,august,september,child_3_price,child_3_10_discount) VALUES (1,'Стандарт',109,109,219,219,109,40,30),
  (2,'Улучшенный 1',139,149,249,249,149,40,30),
  (3,'Улучшенный 2',149,159,279,279,159,40,30),
  (4,'Двухкомнатный',399,699,1099,1099,399,40,30);
 CREATE TABLE "devices" (
-	`id`	INTEGER,
-	`pseudo_id`	TEXT UNIQUE,
-	`phone_num`	TEXT,
-	`name`	TEXT,
-	PRIMARY KEY(`id`)
+	"id"	INTEGER,
+	"pseudo_id"	TEXT UNIQUE,
+	"phone_num"	TEXT,
+	"name"	TEXT,
+	PRIMARY KEY("id")
 );
-INSERT INTO `devices` (id,pseudo_id,phone_num,name) VALUES (1,'710f9449da83946b40e2fecf284ca1b3','+380994386123','V1277'),
+INSERT INTO "devices" (id,pseudo_id,phone_num,name) VALUES (1,'710f9449da83946b40e2fecf284ca1b3','+380994386123','V1277'),
  (2,'9702e7f2e676927cb5ee6902caf7ec5a','15555218135','Custom Phone - 7.1.0 - API 25 - 768x1280'),
  (3,'1913b8f16a4cfba4626ddb775f66f067','15555215554','Google Nexus S - 4.1.1 - API 16');
 COMMIT;
