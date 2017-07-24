@@ -263,7 +263,7 @@ public class SQLiteClass {
                         "FROM rooms_ordered " +
                         "WHERE (date_begin::text < ? AND date_end::text > ?) " +
                         "AND rooms_ordered.room_id = rooms.id) " +
-                        "GROUP BY rooms.room_type " +
+                        "GROUP BY rooms.room_type, room_types.description " +
                         "ORDER BY room_types.id");
 
         pStatement.setString(1, strCheckOut);
