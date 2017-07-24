@@ -1,7 +1,8 @@
 BEGIN TRANSACTION;
+DROP TABLE IF EXISTS "users_pending";
 CREATE TABLE "users_pending"
 (
-    rowid INTEGER PRIMARY KEY SERIAL NOT NULL,
+    rowid SERIAL PRIMARY KEY NOT NULL,
     name TEXT NOT NULL,
     phone TEXT NOT NULL,
     time_from INTEGER NOT NULL,
@@ -27,8 +28,9 @@ INSERT INTO "users_pending" (rowid,name,phone,time_from,time_to) VALUES (39,'Ж�
  (56,'Евдокия','+380 99 438 6000',17,22),
  (57,'Горский','+380 99 438 2726',22,23),
  (58,'Григорий','+380 99 438 7400',16,19);
+DROP TABLE IF EXISTS "rooms_pending";
 CREATE TABLE "rooms_pending" (
-	"rowid"	INTEGER NOT NULL,
+	"rowid"	SERIAL NOT NULL,
 	"user_id"	INTEGER NOT NULL,
 	"room_type"	TEXT NOT NULL,
 	"rooms_count"	INTEGER NOT NULL DEFAULT 1,
@@ -64,8 +66,9 @@ INSERT INTO "rooms_pending" (rowid,user_id,room_type,rooms_count,adult_count,chi
  (27,58,'Двухкомнатный',1,5,1,6),
  (28,58,'Стандарт',1,3,0,3),
  (29,58,'Улучшенный 1',1,5,0,5);
+DROP TABLE IF EXISTS "rooms_ordered";
 CREATE TABLE "rooms_ordered" (
-	"id"	INT NOT NULL,
+	"id"	SERIAL NOT NULL,
 	"user_id"	INT NOT NULL,
 	"room_id"	INT NOT NULL,
 	"date_begin"	DATE NOT NULL,
@@ -117,11 +120,13 @@ INSERT INTO "rooms_ordered" (id,user_id,room_id,date_begin,date_end,status) VALU
  (42,6,7,'2017-09-12','2017-09-15',1),
  (43,7,8,'2017-09-03','2017-09-06',2),
  (44,8,8,'2017-09-09','2017-09-10',1);
+DROP TABLE IF EXISTS "rooms";
 CREATE TABLE rooms
 (
-    id INT NOT NULL,
+    id SERIAL NOT NULL,
     floor INT DEFAULT 1 NOT NULL,
-    room_type TEXT NOT NULL
+    room_type TEXT NOT NULL,
+	PRIMARY KEY("id")
 );
 INSERT INTO "rooms" (id,floor,room_type) VALUES (1,1,'Стандарт'),
  (2,2,'Стандарт'),
@@ -131,8 +136,9 @@ INSERT INTO "rooms" (id,floor,room_type) VALUES (1,1,'Стандарт'),
  (6,2,'Улучшенный 2'),
  (7,1,'Двухкомнатный'),
  (8,2,'Двухкомнатный');
+ DROP TABLE IF EXISTS "room_types";
 CREATE TABLE "room_types" (
-	"id"	INT,
+	"id"	SERIAL NOT NULL,
 	"capacity"	INT NOT NULL,
 	"type"	TEXT NOT NULL UNIQUE,
 	"description"	TEXT NOT NULL,
@@ -168,8 +174,9 @@ INSERT INTO "room_types" (id,capacity,type,description) VALUES (4,6,'Двухк�
 В номере: новый евроремонт, холодильник, телевизор(кабельное TV), кондиционер.
 
 Удобства: в номере(душ, умывальник, туалет); горячая и холодная вода круглосуточно).');
+ DROP TABLE IF EXISTS "prices";
 CREATE TABLE "prices" (
-	"id"	INT NOT NULL,
+	"id"	SERIAL NOT NULL,
 	"room_type"	TEXT NOT NULL UNIQUE,
 	"may"	INT NOT NULL,
 	"june"	INT NOT NULL,
@@ -184,9 +191,10 @@ INSERT INTO "prices" (id,room_type,may,june,july,august,september,child_3_price,
  (2,'Улучшенный 1',139,149,249,249,149,40,30),
  (3,'Улучшенный 2',149,159,279,279,159,40,30),
  (4,'Двухкомнатный',399,699,1099,1099,399,40,30);
+ DROP TABLE IF EXISTS "devices";
 CREATE TABLE "devices" (
-	"id"	INTEGER,
-	"pseudo_id"	TEXT UNIQUE,
+	"id"	SERIAL NOT NULL,
+	"pseudo_id"	TEXT NOT NULL UNIQUE,
 	"phone_num"	TEXT,
 	"name"	TEXT,
 	PRIMARY KEY("id")

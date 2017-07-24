@@ -343,7 +343,7 @@ public class SQLiteClass {
             long userId = rSet1.next() ? rSet1.getInt(1) : REQUEST_FAILED;
 
             if (userId == REQUEST_FAILED)
-                throw new SQLException("request failed");
+                throw new SQLException("Request failed. User not added.");
 
             for (int i = 0; i < orderedRoomsData.size(); i++) {
                 pStatement2 = conn.prepareStatement("INSERT INTO rooms_pending (user_id, room_type, rooms_count, adult_count, child_3_10_count, child_3_count) VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -357,9 +357,9 @@ public class SQLiteClass {
                 pStatement2.executeUpdate();
 
                 rSet2 = pStatement2.getGeneratedKeys();
-                int r = rSet1.next() ? rSet1.getInt(1) : REQUEST_FAILED;
+                int r = rSet2.next() ? rSet2.getInt(1) : REQUEST_FAILED;
                 if (r == REQUEST_FAILED)
-                    throw new SQLException("request failed");
+                    throw new SQLException("Request failed. Order not added.");
             }
 
             conn.commit();
