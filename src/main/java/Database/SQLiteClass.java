@@ -37,8 +37,7 @@ public class SQLiteClass {
         try {
             res = pStatement.executeUpdate();
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            if (e.getErrorCode() == SQLITE_CONSTRAINT) {
+            if (e.getMessage().contains("unique constraint")) {
                 System.out.println("That pseudo_id is already exists.");
                 res = 2;
             } else throw e;
