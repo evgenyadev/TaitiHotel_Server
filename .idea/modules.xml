@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TaitiREST.iml" filepath="$PROJECT_DIR$/TaitiREST.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taitihotel-server.iml" filepath="$PROJECT_DIR$/taitihotel-server.iml" />
     </modules>
   </component>
 </project>

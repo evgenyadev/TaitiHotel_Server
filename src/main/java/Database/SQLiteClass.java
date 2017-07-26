@@ -5,17 +5,16 @@ import main.java.data.OrderedRoomData;
 import java.sql.*;
 import java.util.*;
 
-import static org.sqlite.core.Codes.SQLITE_CONSTRAINT;
-
+@SuppressWarnings("ALL")
 public class SQLiteClass {
 
     public static final int REQUEST_FAILED = -1;
     public static final int REQUEST_SUCCESS = 1;
 
     private static Connection getConnection() throws SQLException {
-		String dbUrl = System.getenv("JDBC_DATABASE_URL");
-		return DriverManager.getConnection(dbUrl);
-	}
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        return DriverManager.getConnection(dbUrl);
+    }
 
     private static void closeConnection(Connection conn) throws SQLException {
         conn.close();
@@ -68,27 +67,27 @@ public class SQLiteClass {
 
         return res;
     }
-	
-	public static String version() throws SQLException, ClassNotFoundException  {
-		Connection conn = getConnection();
-		Statement statement = conn.createStatement();
-		ResultSet rSet = null;
-		
-		String version;
-		try {
-            rSet = statement.executeQuery("SELECT version() as version");
+
+    public static String version() throws SQLException, ClassNotFoundException {
+        Connection conn = getConnection();
+        Statement statement = conn.createStatement();
+        ResultSet rSet = null;
+
+        String version;
+        try {
+            rSet = statement.executeQuery("SELECT version() AS version");
             if (rSet.next()) {
                 version = rSet.getString("version");
-            } else 
-				version = "null";
+            } else
+                version = "null";
         } finally {
             if (rSet != null && !rSet.isClosed()) rSet.close();
             if (statement != null && !statement.isClosed()) statement.close();
             if (!conn.isClosed()) closeConnection(conn);
         }
-		
-		return version;
-	}
+
+        return version;
+    }
 
     @Deprecated
     public static Map<String, Object> userGetInfo(String pseudoId) throws SQLException, ClassNotFoundException {
@@ -260,7 +259,7 @@ public class SQLiteClass {
                         "WHERE NOT EXISTS " +
                         "(SELECT * " +
                         "FROM rooms_ordered " +
-                        "WHERE (date_begin::text < ? AND date_end::text > ?) " +
+                        "WHERE (date_begin::TEXT < ? AND date_end::TEXT > ?) " +
                         "AND rooms_ordered.room_id = rooms.id) " +
                         "GROUP BY rooms.room_type, room_types.description, room_types.id " +
                         "ORDER BY room_types.id");
@@ -322,7 +321,7 @@ public class SQLiteClass {
     public static int orderAdd(String name, String phone, int time_from, int time_to, List<OrderedRoomData> orderedRoomsData) throws SQLException, ClassNotFoundException {
 
         Connection conn = getConnection();
-        PreparedStatement pStatement1 = null,pStatement2 = null;
+        PreparedStatement pStatement1 = null, pStatement2 = null;
         ResultSet rSet1 = null, rSet2 = null;
 
         int res;

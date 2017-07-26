@@ -4,11 +4,11 @@
     <root id="archive" name="REST.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="TaitiREST" />
+          <element id="module-output" name="taitihotel-server" />
         </element>
         <element id="directory" name="lib" />
       </element>
-      <element id="javaee-facet-resources" facet="TaitiREST/web/Web" />
+      <element id="javaee-facet-resources" facet="taitihotel-server/web/Web" />
     </root>
   </artifact>
 </component>
