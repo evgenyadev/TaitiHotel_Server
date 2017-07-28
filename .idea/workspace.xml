@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" afterPath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" />
-    </list>
+    <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -119,69 +117,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SQLiteClass.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="175" column="62" lean-forward="false" selection-start-line="175" selection-start-column="62" selection-end-line="175" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getConnection#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#closeConnection#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#deviceAdd#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#userUpdateInfo#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#version#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#userGetInfo#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="e#5109#5130#0" expanded="true" />
-                <element signature="e#5538#5554#0" expanded="true" />
-                <element signature="e#6188#6209#0" expanded="true" />
-                <element signature="e#6313#6329#0" expanded="true" />
-                <element signature="method#putRoomData#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#roomGetRoom#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#roomGetAll#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#roomUpdateParameters#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="e#13567#13588#0" expanded="true" />
-                <marker date="1501241271609" expanded="false" signature="882:943" ph="INSERT INTO devices... " />
-                <marker date="1501241271609" expanded="false" signature="1821:1889" ph="UPDATE devic... " />
-                <marker date="1501241271609" expanded="false" signature="2561:2588" ph="SELECT versi... " />
-                <marker date="1501241271609" expanded="false" signature="3278:3334" ph="SELECT name,... devices" />
-                <marker date="1501241271609" expanded="true" signature="4304:4348" ph="SELECT pseud... devices" />
-                <marker date="1501241271609" expanded="true" signature="5415:5442" ph="SELECT * FRO... users_pending" />
-                <marker date="1501241271609" expanded="true" signature="5966:6013" ph="SELECT * FRO... rooms_pending" />
-                <marker date="1501241271609" expanded="false" signature="8074:8277" ph="SELECT rooms... rooms" />
-                <marker date="1501241271609" expanded="false" signature="8977:9158" ph="SELECT rooms... rooms" />
-                <marker date="1501241271609" expanded="true" signature="11961:12589" ph="SELECT sum(r... rooms" />
-                <marker date="1501241271609" expanded="true" signature="12240:12443" ph="SELECT * FRO... rooms_ordered" />
-                <marker date="1501241271609" expanded="true" signature="13799:13819" ph="SELECT * FRO... prices" />
-                <marker date="1501241271609" expanded="false" signature="15194:15270" ph="INSERT INTO users_pending... " />
-                <marker date="1501241271609" expanded="false" signature="15892:16018" ph="INSERT INTO rooms_pending... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiServiceV1.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ApiServiceV1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="140" column="40" lean-forward="false" selection-start-line="140" selection-start-column="40" selection-end-line="140" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#426#430#0" expanded="false" />
-                <element signature="e#1792#1802#0" expanded="false" />
-                <element signature="e#3525#3529#0" expanded="false" />
-                <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
-                <element signature="e#5662#5672#0" expanded="false" />
-                <element signature="e#8437#8441#0" expanded="false" />
-                <element signature="e#9348#9352#0" expanded="false" />
-                <element signature="e#10137#10142#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -711,16 +647,15 @@
       <workItem from="1501076160277" duration="1152000" />
       <workItem from="1501162405292" duration="637000" />
       <workItem from="1501163697340" duration="8833000" />
-      <workItem from="1501229699473" duration="5967000" />
+      <workItem from="1501229699473" duration="6112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18764000" />
+    <option name="totallyTimeSpent" value="18909000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -732,7 +667,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4141844" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19870968" sideWeight="0.7036145" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19870968" sideWeight="0.7036145" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20129032" sideWeight="0.29638556" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18774194" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -983,24 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ApiServiceV1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="140" column="40" lean-forward="false" selection-start-line="140" selection-start-column="40" selection-end-line="140" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#426#430#0" expanded="false" />
-            <element signature="e#1792#1802#0" expanded="false" />
-            <element signature="e#3525#3529#0" expanded="false" />
-            <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#5662#5672#0" expanded="false" />
-            <element signature="e#8437#8441#0" expanded="false" />
-            <element signature="e#9348#9352#0" expanded="false" />
-            <element signature="e#10137#10142#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="539">
@@ -1036,6 +953,24 @@
             <marker date="1501241271609" expanded="true" signature="13799:13819" ph="SELECT * FRO... prices" />
             <marker date="1501241271609" expanded="false" signature="15194:15270" ph="INSERT INTO users_pending... " />
             <marker date="1501241271609" expanded="false" signature="15892:16018" ph="INSERT INTO rooms_pending... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ApiServiceV1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-149">
+          <caret line="140" column="40" lean-forward="false" selection-start-line="140" selection-start-column="40" selection-end-line="140" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#426#430#0" expanded="false" />
+            <element signature="e#1792#1802#0" expanded="false" />
+            <element signature="e#3525#3529#0" expanded="false" />
+            <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
+            <element signature="e#5662#5672#0" expanded="false" />
+            <element signature="e#8437#8441#0" expanded="false" />
+            <element signature="e#9348#9352#0" expanded="false" />
+            <element signature="e#10137#10142#0" expanded="false" />
           </folding>
         </state>
       </provider>

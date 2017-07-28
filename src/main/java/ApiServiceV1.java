@@ -293,8 +293,8 @@ public class ApiServiceV1 {
                 roomData.roomType = row.getString("roomType");
                 roomData.roomsCount = row.getInt("roomsCount");
                 roomData.adultsCount = row.getInt("adultsCount");
-                roomData.child_3_count = row.getInt("child_3_count");
-                roomData.child_3_10_count = row.getInt("child_3_10_count");
+                roomData.child_3_count = row.getInt("child_3");
+                roomData.child_3_10_count = row.getInt("child_3_10");
                 orderedRoomsData.add(roomData);
             }
         } catch (JSONException e) {
