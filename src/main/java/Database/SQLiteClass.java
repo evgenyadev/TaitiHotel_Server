@@ -162,6 +162,7 @@ public class SQLiteClass {
                 statement2.setInt(1, userId);
                 rSet2 = statement2.executeQuery();
 
+                List<Map<String, Object>> orderedRoomData = new ArrayList<Map<String, Object>>();
                 while (rSet2.next()) {
                     Map<String, Object> roomRow = new HashMap<String, Object>();
                     roomRow.put("roomType", rSet2.getString("room_type"));
@@ -170,8 +171,9 @@ public class SQLiteClass {
                     roomRow.put("child_3_10_count", rSet2.getInt("child_3_10_count"));
                     roomRow.put("child_3_count", rSet2.getInt("child_3_count"));
 
-                    userRow.put("orderedRoomData", roomRow);
+                    orderedRoomData.add(roomRow);
                 }
+                userRow.put("orderedRoomData", orderedRoomData);
 
                 orderDataList.add(userRow);
             }
