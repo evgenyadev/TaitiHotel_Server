@@ -1,11 +1,11 @@
 package main.java.Database;
 
 import main.java.data.OrderedRoomData;
+import main.java.data.OrderData;
 
 import java.sql.*;
 import java.util.*;
 
-@SuppressWarnings("ALL")
 public class SQLiteClass {
 
     public static final int REQUEST_FAILED = -1;
@@ -137,6 +137,52 @@ public class SQLiteClass {
         }
 
         return users;
+    }
+
+    public static List<OrderData> orderGetAll() throws SQLException {
+        List<OrderData> orderDataList = new ArrayList<OrderData>();
+
+        Connection conn = getConnection();
+        Statement statement1 = null;
+        PreparedStatement statement2 = null;
+        ResultSet rSet1 = null, rSet2 = null;
+
+        try {
+            statement1 = conn.createStatement();
+            rSet1 = statement1.executeQuery("SELECT * FROM users_pending");
+            while (rSet1.next()) {
+                OrderData od = new OrderData();
+                od.id = rSet1.getInt("rowid");
+                od.name = rSet1.getString("name");
+                od.phone = rSet1.getString("phone");
+                od.time_from = rSet1.getInt("time_from");
+                od.time_to = rSet1.getInt("time_to");
+
+                statement2 = conn.prepareStatement("SELECT * FROM rooms_pending WHERE user_id = (?)");
+                statement2.setInt(1, od.id);
+                rSet2 = statement2.executeQuery();
+
+                while (rSet2.next()) {
+                    OrderedRoomData ord = new OrderedRoomData();
+                    ord.roomType = rSet2.getString("room_type");
+                    ord.roomsCount = rSet2.getInt("rooms_count");
+                    ord.adultsCount = rSet2.getInt("adult_count");
+                    ord.child_3_10_count = rSet2.getInt("child_3_10_count");
+                    ord.child_3_count = rSet2.getInt("child_3_count");
+                    od.orderedRoomData.add(ord);
+                }
+
+                orderDataList.add(od);
+            }
+        } finally {
+            if (rSet1 != null && !rSet1.isClosed()) rSet1.close();
+            if (rSet2 != null && !rSet2.isClosed()) rSet2.close();
+            if (statement1 != null && !statement1.isClosed()) statement1.close();
+            if (statement2 != null && !statement2.isClosed()) statement2.close();
+            if (!conn.isClosed()) conn.close();
+        }
+
+        return orderDataList;
     }
 
     @Deprecated
@@ -349,8 +395,8 @@ public class SQLiteClass {
                 pStatement2.setString(2, orderedRoomsData.get(i).roomType);
                 pStatement2.setInt(3, orderedRoomsData.get(i).roomsCount);
                 pStatement2.setInt(4, orderedRoomsData.get(i).adultsCount);
-                pStatement2.setInt(5, orderedRoomsData.get(i).child_3_10);
-                pStatement2.setInt(6, orderedRoomsData.get(i).child_3);
+                pStatement2.setInt(5, orderedRoomsData.get(i).child_3_10_count);
+                pStatement2.setInt(6, orderedRoomsData.get(i).child_3_count);
 
                 pStatement2.executeUpdate();
 

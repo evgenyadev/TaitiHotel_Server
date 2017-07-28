@@ -2,6 +2,7 @@ package main.java;
 
 import main.java.Database.SQLiteClass;
 import main.java.data.OrderedRoomData;
+import main.java.data.OrderData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,10 +131,32 @@ public class ApiServiceV1 {
 			e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
 		}
+		// todo make json array without "users"
         for (Map<String, Object> user : users) {
             response.append("users", user);
         }
         return Response.ok(response.toString()).build();
+    }
+
+    @GET
+    @Produces
+    @Path("/order.getAll")
+    public Response orderGetAll() {
+        List<OrderData> orderDataList;
+
+        try {
+            orderDataList = SQLiteClass.orderGetAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+
+        JSONArray response = new JSONArray(orderDataList);
+
+        if (orderDataList.isEmpty()) {
+            return Response.noContent().build();
+        } else
+            return Response.ok(response.toString()).build();
     }
 
 //    @GET
@@ -271,8 +294,8 @@ public class ApiServiceV1 {
                 roomData.roomType = row.getString("roomType");
                 roomData.roomsCount = row.getInt("roomsCount");
                 roomData.adultsCount = row.getInt("adultsCount");
-                roomData.child_3 = row.getInt("child_3");
-                roomData.child_3_10 = row.getInt("child_3_10");
+                roomData.child_3_count = row.getInt("child_3_count");
+                roomData.child_3_10_count = row.getInt("child_3_10_count");
                 orderedRoomsData.add(roomData);
             }
         } catch (JSONException e) {
