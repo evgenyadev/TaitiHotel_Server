@@ -138,7 +138,7 @@ public class ApiServiceV1 {
     }
 
     @GET
-    @Produces
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/order.getAll")
     public Response orderGetAll() {
         List<Map<String, Object>> orderDataList;
