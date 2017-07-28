@@ -1,7 +1,6 @@
 package main.java.Database;
 
 import main.java.data.OrderedRoomData;
-import main.java.data.OrderData;
 
 import java.sql.*;
 import java.util.*;
@@ -139,8 +138,8 @@ public class SQLiteClass {
         return users;
     }
 
-    public static List<OrderData> orderGetAll() throws SQLException {
-        List<OrderData> orderDataList = new ArrayList<OrderData>();
+    public static List<Map<String, Object>> orderGetAll() throws SQLException {
+        List<Map<String, Object>> orderDataList = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();
         Statement statement1 = null;
@@ -151,28 +150,30 @@ public class SQLiteClass {
             statement1 = conn.createStatement();
             rSet1 = statement1.executeQuery("SELECT * FROM users_pending");
             while (rSet1.next()) {
-                OrderData od = new OrderData();
-                od.id = rSet1.getInt("rowid");
-                od.name = rSet1.getString("name");
-                od.phone = rSet1.getString("phone");
-                od.time_from = rSet1.getInt("time_from");
-                od.time_to = rSet1.getInt("time_to");
+                Map<String, Object> userRow = new HashMap<String, Object>();
+                int userId = rSet1.getInt("rowid");
+                userRow.put("id", userId);
+                userRow.put("name", rSet1.getString("name"));
+                userRow.put("phone", rSet1.getString("phone"));
+                userRow.put("time_from", rSet1.getInt("time_from"));
+                userRow.put("time_to", rSet1.getInt("time_to"));
 
                 statement2 = conn.prepareStatement("SELECT * FROM rooms_pending WHERE user_id = (?)");
-                statement2.setInt(1, od.id);
+                statement2.setInt(1, userId);
                 rSet2 = statement2.executeQuery();
 
                 while (rSet2.next()) {
-                    OrderedRoomData ord = new OrderedRoomData();
-                    ord.roomType = rSet2.getString("room_type");
-                    ord.roomsCount = rSet2.getInt("rooms_count");
-                    ord.adultsCount = rSet2.getInt("adult_count");
-                    ord.child_3_10_count = rSet2.getInt("child_3_10_count");
-                    ord.child_3_count = rSet2.getInt("child_3_count");
-                    od.orderedRoomData.add(ord);
+                    Map<String, Object> roomRow = new HashMap<String, Object>();
+                    roomRow.put("roomType", rSet2.getString("room_type"));
+                    roomRow.put("roomsCount", rSet2.getInt("rooms_count"));
+                    roomRow.put("adultsCount", rSet2.getInt("adult_count"));
+                    roomRow.put("child_3_10_count", rSet2.getInt("child_3_10_count"));
+                    roomRow.put("child_3_count", rSet2.getInt("child_3_count"));
+
+                    userRow.put("orderedRoomData", roomRow);
                 }
 
-                orderDataList.add(od);
+                orderDataList.add(userRow);
             }
         } finally {
             if (rSet1 != null && !rSet1.isClosed()) rSet1.close();

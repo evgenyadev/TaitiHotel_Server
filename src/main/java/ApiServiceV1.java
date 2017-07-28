@@ -2,7 +2,6 @@ package main.java;
 
 import main.java.Database.SQLiteClass;
 import main.java.data.OrderedRoomData;
-import main.java.data.OrderData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -142,20 +141,13 @@ public class ApiServiceV1 {
     @Produces
     @Path("/order.getAll")
     public Response orderGetAll() {
-        List<OrderData> orderDataList;
+        List<Map<String, Object>> orderDataList;
 
         try {
             orderDataList = SQLiteClass.orderGetAll();
         } catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        }
-
-        for (OrderData orderData : orderDataList) {
-            System.out.print(orderData.id);
-            System.out.print(orderData.name);
-            System.out.print(orderData.phone);
-            System.out.println("");
         }
 
         JSONArray response = new JSONArray(orderDataList);
