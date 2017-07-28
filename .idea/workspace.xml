@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ApiServiceV1.java" afterPath="$PROJECT_DIR$/src/main/java/ApiServiceV1.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -160,8 +161,8 @@
       <file leaf-file-name="ApiServiceV1.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ApiServiceV1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="155" column="38" lean-forward="true" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="38" />
+            <state relative-caret-position="397">
+              <caret line="157" column="32" lean-forward="false" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#459#463#0" expanded="false" />
@@ -169,11 +170,11 @@
                 <element signature="e#1825#1835#0" expanded="false" />
                 <element signature="e#3558#3562#0" expanded="false" />
                 <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
-                <element signature="e#5722#5732#0" expanded="false" />
-                <element signature="e#8497#8501#0" expanded="false" />
+                <element signature="e#5893#5903#0" expanded="false" />
+                <element signature="e#8668#8672#0" expanded="false" />
                 <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
-                <element signature="e#9408#9412#0" expanded="false" />
-                <element signature="e#10197#10202#0" expanded="false" />
+                <element signature="e#9579#9583#0" expanded="false" />
+                <element signature="e#10368#10373#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -719,12 +720,12 @@
       <workItem from="1501076160277" duration="1152000" />
       <workItem from="1501162405292" duration="637000" />
       <workItem from="1501163697340" duration="8833000" />
-      <workItem from="1501229699473" duration="4096000" />
+      <workItem from="1501229699473" duration="4248000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16893000" />
+    <option name="totallyTimeSpent" value="17045000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -832,11 +833,11 @@
             <element signature="e#1825#1835#0" expanded="false" />
             <element signature="e#3558#3562#0" expanded="false" />
             <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#5722#5732#0" expanded="false" />
-            <element signature="e#8497#8501#0" expanded="false" />
+            <element signature="e#5893#5903#0" expanded="false" />
+            <element signature="e#8668#8672#0" expanded="false" />
             <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#9408#9412#0" expanded="false" />
-            <element signature="e#10197#10202#0" expanded="false" />
+            <element signature="e#9579#9583#0" expanded="false" />
+            <element signature="e#10368#10373#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1021,8 +1022,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ApiServiceV1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="155" column="38" lean-forward="true" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="38" />
+        <state relative-caret-position="397">
+          <caret line="157" column="32" lean-forward="false" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#459#463#0" expanded="false" />
@@ -1030,11 +1031,11 @@
             <element signature="e#1825#1835#0" expanded="false" />
             <element signature="e#3558#3562#0" expanded="false" />
             <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#5722#5732#0" expanded="false" />
-            <element signature="e#8497#8501#0" expanded="false" />
+            <element signature="e#5893#5903#0" expanded="false" />
+            <element signature="e#8668#8672#0" expanded="false" />
             <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#9408#9412#0" expanded="false" />
-            <element signature="e#10197#10202#0" expanded="false" />
+            <element signature="e#9579#9583#0" expanded="false" />
+            <element signature="e#10368#10373#0" expanded="false" />
           </folding>
         </state>
       </provider>

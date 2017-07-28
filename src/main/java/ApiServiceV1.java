@@ -151,9 +151,14 @@ public class ApiServiceV1 {
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
 
-        System.out.println(orderDataList.toString());
+        for (OrderData orderData : orderDataList) {
+            System.out.print(orderData.id);
+            System.out.print(orderData.name);
+            System.out.print(orderData.phone);
+            System.out.println("");
+        }
 
-        JSONArray response = new JSONArray(orderDataList.toArray());
+        JSONArray response = new JSONArray(orderDataList);
 
         if (orderDataList.isEmpty()) {
             return Response.noContent().build();
