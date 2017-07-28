@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/data/OrderData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ApiServiceV1.java" afterPath="$PROJECT_DIR$/src/main/java/ApiServiceV1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" afterPath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/data/OrderedRoomData.java" afterPath="$PROJECT_DIR$/src/main/java/data/OrderedRoomData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taitihotel-server.iml" afterPath="$PROJECT_DIR$/taitihotel-server.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -124,7 +119,67 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SQLiteClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1502">
+              <caret line="307" column="75" lean-forward="false" selection-start-line="307" selection-start-column="75" selection-end-line="307" selection-end-column="75" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#getConnection#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#closeConnection#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#deviceAdd#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#userUpdateInfo#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#version#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#userGetInfo#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#putRoomData#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#roomGetRoom#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#roomGetAll#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#roomUpdateParameters#0;class#SQLiteClass#0" expanded="false" />
+                <element signature="method#priceGetAll#0;class#SQLiteClass#0" expanded="false" />
+                <marker date="1501238875536" expanded="false" signature="915:976" ph="INSERT INTO devices... " />
+                <marker date="1501238875536" expanded="false" signature="1854:1922" ph="UPDATE devic... " />
+                <marker date="1501238875536" expanded="false" signature="2594:2621" ph="SELECT versi... " />
+                <marker date="1501238875536" expanded="false" signature="3311:3367" ph="SELECT name,... devices" />
+                <marker date="1501238875536" expanded="true" signature="4337:4381" ph="SELECT pseud... devices" />
+                <marker date="1501238875536" expanded="true" signature="5418:5445" ph="SELECT * FRO... users_pending" />
+                <marker date="1501238875536" expanded="true" signature="5848:5895" ph="SELECT * FRO... rooms_pending" />
+                <marker date="1501238875536" expanded="false" signature="7719:7922" ph="SELECT rooms... rooms" />
+                <marker date="1501238875536" expanded="false" signature="8622:8803" ph="SELECT rooms... rooms" />
+                <marker date="1501238875536" expanded="true" signature="11606:12234" ph="SELECT sum(r... rooms" />
+                <marker date="1501238875536" expanded="true" signature="11885:12088" ph="SELECT * FRO... rooms_ordered" />
+                <marker date="1501238875536" expanded="false" signature="13444:13464" ph="SELECT * FRO... prices" />
+                <marker date="1501238875536" expanded="false" signature="14839:14915" ph="INSERT INTO users_pending... " />
+                <marker date="1501238875536" expanded="false" signature="15537:15663" ph="INSERT INTO rooms_pending... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApiServiceV1.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ApiServiceV1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="153" column="18" lean-forward="false" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#459#463#0" expanded="false" />
+                <element signature="method#deviceAdd#0;class#ApiServiceV1#0" expanded="false" />
+                <element signature="e#1825#1835#0" expanded="false" />
+                <element signature="e#3558#3562#0" expanded="false" />
+                <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
+                <element signature="e#5659#5669#0" expanded="false" />
+                <element signature="e#8434#8438#0" expanded="false" />
+                <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
+                <element signature="e#9345#9349#0" expanded="false" />
+                <element signature="e#10134#10139#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -654,15 +709,16 @@
       <workItem from="1501076160277" duration="1152000" />
       <workItem from="1501162405292" duration="637000" />
       <workItem from="1501163697340" duration="8833000" />
-      <workItem from="1501229699473" duration="3584000" />
+      <workItem from="1501229699473" duration="3931000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16381000" />
+    <option name="totallyTimeSpent" value="16728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -674,7 +730,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4141844" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19870968" sideWeight="0.7036145" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19870968" sideWeight="0.7036145" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20129032" sideWeight="0.29638556" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18774194" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -766,11 +822,11 @@
             <element signature="e#1825#1835#0" expanded="false" />
             <element signature="e#3558#3562#0" expanded="false" />
             <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#5657#5667#0" expanded="false" />
-            <element signature="e#8432#8436#0" expanded="false" />
+            <element signature="e#5659#5669#0" expanded="false" />
+            <element signature="e#8434#8438#0" expanded="false" />
             <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#9343#9347#0" expanded="false" />
-            <element signature="e#10132#10137#0" expanded="false" />
+            <element signature="e#9345#9349#0" expanded="false" />
+            <element signature="e#10134#10139#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -875,6 +931,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/ClassNotFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="52" column="13" lean-forward="false" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/OrderedRoomData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/OrderData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -886,17 +958,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/ClassNotFoundException.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-bundle/1.19/jersey-bundle-1.19.jar!/javax/ws/rs/core/Response.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="52" column="13" lean-forward="false" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <caret line="64" column="43" lean-forward="false" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-39">
+        <state relative-caret-position="1502">
           <caret line="307" column="75" lean-forward="false" selection-start-line="307" selection-start-column="75" selection-end-line="307" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -931,8 +1003,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ApiServiceV1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="329">
+          <caret line="153" column="18" lean-forward="false" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#459#463#0" expanded="false" />
@@ -940,20 +1012,12 @@
             <element signature="e#1825#1835#0" expanded="false" />
             <element signature="e#3558#3562#0" expanded="false" />
             <element signature="method#info#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#5657#5667#0" expanded="false" />
-            <element signature="e#8432#8436#0" expanded="false" />
+            <element signature="e#5659#5669#0" expanded="false" />
+            <element signature="e#8434#8438#0" expanded="false" />
             <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#9343#9347#0" expanded="false" />
-            <element signature="e#10132#10137#0" expanded="false" />
+            <element signature="e#9345#9349#0" expanded="false" />
+            <element signature="e#10134#10139#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/OrderedRoomData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
