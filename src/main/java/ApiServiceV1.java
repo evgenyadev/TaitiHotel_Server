@@ -151,7 +151,9 @@ public class ApiServiceV1 {
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
 
-        JSONObject response = new JSONObject(orderDataList);
+        System.out.println(orderDataList.toString());
+
+        JSONArray response = new JSONArray(orderDataList.toArray());
 
         if (orderDataList.isEmpty()) {
             return Response.noContent().build();
