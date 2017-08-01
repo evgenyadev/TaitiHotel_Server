@@ -283,8 +283,8 @@ public class SQLiteClass {
             pStatement1.setString(2, phone);
             pStatement1.setInt(3, timeFrom);
             pStatement1.setInt(4, timeTo);
-            pStatement1.setString(5, dateCheckIn);
-            pStatement1.setString(6, dateCheckOut);
+            pStatement1.setDate(5, Date.valueOf(dateCheckIn));
+            pStatement1.setDate(6, Date.valueOf(dateCheckOut));
 
             pStatement1.executeUpdate();
 
