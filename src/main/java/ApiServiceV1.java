@@ -233,16 +233,8 @@ public class ApiServiceV1 {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/request.delete")
-    public Response requestDelete(final String strRequest) {
-        int userId;
-
-        try {
-            JSONObject request = new JSONObject(strRequest);
-            userId = request.getInt("user_id");
-        } catch (JSONException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
-        }
+    @Path("/request.delete/{id}")
+    public Response requestDelete(@PathParam("id") int userId) {
 
         int res;
         try {
