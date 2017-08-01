@@ -195,7 +195,7 @@ public class SQLiteClass {
 
         try {
             rSet = pStatement.executeQuery();
-            while (rSet.next()) {1
+            while (rSet.next()) {
                 Map<String, Object> cRoom = new HashMap<String, Object>();
                 cRoom.put("capacity", rSet.getInt("capacity"));
                 cRoom.put("count", rSet.getInt("count"));
