@@ -185,17 +185,17 @@ public class SQLiteClass {
                         "WHERE NOT EXISTS " +
                         "(SELECT * " +
                         "FROM rooms_ordered " +
-                        "WHERE (date_begin::TEXT < ? AND date_end::TEXT > ?) " +
+                        "WHERE (date_begin < ? AND date_end > ?) " +
                         "AND rooms_ordered.room_id = rooms.id) " +
                         "GROUP BY rooms.room_type, room_types.description, room_types.id " +
                         "ORDER BY room_types.id");
 
-        pStatement.setString(1, strCheckOut);
-        pStatement.setString(2, strCheckIn);
+        pStatement.setDate(1, Date.valueOf(strCheckOut));
+        pStatement.setDate(2, Date.valueOf(strCheckIn));
 
         try {
             rSet = pStatement.executeQuery();
-            while (rSet.next()) {
+            while (rSet.next()) {1
                 Map<String, Object> cRoom = new HashMap<String, Object>();
                 cRoom.put("capacity", rSet.getInt("capacity"));
                 cRoom.put("count", rSet.getInt("count"));
