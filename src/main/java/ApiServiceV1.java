@@ -52,47 +52,6 @@ public class ApiServiceV1 {
         return response.entity(jsonEntity.toString()).build();
     }
 
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/user.updateInfo")
-//    public Response userUpdateInfo(final String strRequest) throws SQLException, ClassNotFoundException {
-//        String pseudoId;
-//        String phoneNum;
-//        String name;
-//        try {
-//            JSONObject request = new JSONObject(strRequest);
-//            phoneNum = request.getString("phone_num");
-//            pseudoId = request.getString("pseudo_id");
-//            name = request.getString("name");
-//        } catch (JSONException e) {
-//            return Response.status(Response.Status.OK).entity("{\"error\":\"Invalid JSON data.\"}").build();
-//        }
-//
-//        JSONObject jsonEntity = new JSONObject();
-//        if (SQLiteClass.userUpdateInfo(pseudoId, phoneNum, name) == 1) {
-//            jsonEntity.put("pseudo_id", pseudoId);
-//            jsonEntity.put("phone_num", phoneNum);
-//            jsonEntity.put("name", name);
-//        } else
-//            jsonEntity.put("error", "Data not updated.");
-//
-//        return Response.status(Response.Status.OK).entity(jsonEntity.toString()).build();
-//    }
-
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/user.getInfo")
-//    public Response userGetInfo(@QueryParam("pseudo_id") final String pseudoId) throws SQLException, ClassNotFoundException {
-//        Map<String, Object> user = SQLiteClass.userGetInfo(pseudoId);
-//        JSONObject jsonObject = new JSONObject(user);
-//
-//        if (user.isEmpty())
-//            jsonObject.put("error", "No such user or data is empty.");
-//
-//        return Response.status(Response.Status.OK).entity(jsonObject.toString()).build();
-//    }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/info")
@@ -105,10 +64,7 @@ public class ApiServiceV1 {
 		} catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        } catch (ClassNotFoundException e) {
-			e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-		}
+        }
 		
 		jsonObject.put("v", version);
 
@@ -117,19 +73,17 @@ public class ApiServiceV1 {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/user.getAll")
-    public Response userGetAll() {
+    @Path("/device.getAll")
+    public Response deviceGetAll() {
         JSONObject response = new JSONObject();
         List<Map<String, Object>> users;
         try {
-            users = SQLiteClass.userGetAll();
+            users = SQLiteClass.deviceGetAll();
         } catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        } catch (ClassNotFoundException e) {
-			e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-		}
+        }
+
 		// todo make json array without "users"
         for (Map<String, Object> user : users) {
             response.append("users", user);
@@ -139,7 +93,7 @@ public class ApiServiceV1 {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/order.getAll")
+    @Path("/request.getAll")
     public Response orderGetAll() {
         List<Map<String, Object>> orderDataList;
 
@@ -158,70 +112,6 @@ public class ApiServiceV1 {
             return Response.ok(response.toString()).build();
     }
 
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/room.getRoom")
-//    public Response roomGetRoom(@QueryParam("id") final int id) throws SQLException, ClassNotFoundException {
-//        Map<String, Object> room = SQLiteClass.roomGetRoom(id);
-//        JSONObject response = new JSONObject(room);
-//
-//        if (room.isEmpty()) response.put("error", "No such room.");
-//
-//        return Response.status(Response.Status.OK).entity(response.toString()).build();
-//    }
-
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/room.getAll")
-//    public Response roomGetAll() throws SQLException, ClassNotFoundException {
-//        JSONObject response = new JSONObject();
-//        List<Map<String, Object>> rooms = SQLiteClass.roomGetAll();
-//
-//        for (Map<String, Object> room : rooms) {
-//            response.append("rooms", room);
-//        }
-//
-//        return Response.status(Response.Status.OK).entity(response.toString()).build();
-//    }
-
-//    @Deprecated
-//    @PUT
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Path("/room.updateParameters")
-//    public Response roomUpdateParameters(final String strRequest) throws SQLException, ClassNotFoundException {
-//        //region проверка входных данных
-//        List<String> allowedParams = Arrays.asList("has_air_condition", "has_fridge", "has_tv");
-//        HashMap<String, Boolean> mapParams = new HashMap<>();
-//        int id;
-//        try {
-//            JSONObject request = new JSONObject(strRequest);
-//
-//            id = request.getInt("id");
-//            JSONObject reqParams = request.getJSONObject("params");
-//            // все ли принятые параметры есть в списке разрешенных
-//            for (Object parameter : reqParams.keySet()) {
-//                if (allowedParams.contains((String) parameter))
-//                    mapParams.put((String) parameter, reqParams.getBoolean((String) parameter));
-//                else
-//                    return Response.status(Response.Status.OK).entity("{\"error\":\"Invalid JSON data.\"}").build();
-//            }
-//
-//        } catch (JSONException e) {
-//            return Response.status(Response.Status.OK).entity("{\"error\":\"Invalid JSON data.\"}").build();
-//        }
-//        //endregion
-//        //region запрос и обработка ответа
-//        JSONObject jsonEntity = new JSONObject();
-//        if (SQLiteClass.roomUpdateParameters(id, mapParams) == 1) {
-//            jsonEntity.put("id", id);
-//            jsonEntity.put("params", mapParams);
-//        } else
-//            jsonEntity.put("error", "Data not updated.");
-//        //endregion
-//        return Response.status(Response.Status.OK).entity(jsonEntity.toString()).build();
-//    }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/room.searchByRange")
@@ -230,9 +120,6 @@ public class ApiServiceV1 {
         try {
             rooms = SQLiteClass.roomSearchByRange(checkIn, checkOut);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
@@ -255,9 +142,6 @@ public class ApiServiceV1 {
         } catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
 
         JSONArray response = new JSONArray(prices);
@@ -271,12 +155,14 @@ public class ApiServiceV1 {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/order.add")
-    public Response orderAdd(final String strRequest) {
+    @Path("/request.add")
+    public Response requestAdd(final String strRequest) {
         String name;
         String phone;
-        int time_from;
-        int time_to;
+        int timeFrom;
+        int timeTo;
+        String dateCheckIn;
+        String dateCheckOut;
         List<OrderedRoomData> orderedRoomsData = new ArrayList<OrderedRoomData>();
 
         // разобрать данные по переменным
@@ -284,8 +170,10 @@ public class ApiServiceV1 {
             JSONObject order = new JSONObject(strRequest);
             name = order.getString("name");
             phone = order.getString("phone");
-            time_from = order.getInt("time_from");
-            time_to = order.getInt("time_to");
+            timeFrom = order.getInt("time_from");
+            timeTo = order.getInt("time_to");
+            dateCheckIn = order.getString("date_check_in");
+            dateCheckOut = order.getString("date_check_out");
             JSONArray roomsData = order.getJSONArray("orderedRoomsData");
             for (int i = 0; i < roomsData.length(); i++) {
                 JSONObject row = roomsData.getJSONObject(i);
@@ -303,15 +191,70 @@ public class ApiServiceV1 {
 
         // добавить заказ в базу
         try {
-            SQLiteClass.orderAdd(name, phone, time_from, time_to, orderedRoomsData);
+            SQLiteClass.requestAdd(name, phone, timeFrom, timeTo, dateCheckIn, dateCheckOut, orderedRoomsData);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
 
         return Response.ok("{\"info\":\"Order added.\"}").build();
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/order.add")
+    public Response orderAdd(final String strRequest) {
+        String userName;
+        int roomId;
+        String dateBegin;
+        String dateEnd;
+
+        try {
+            JSONObject request = new JSONObject(strRequest);
+            userName = request.getString("user_name");
+            roomId = request.getInt("room_id");
+            dateBegin = request.getString("date_begin");
+            dateEnd = request.getString("date_end");
+        } catch (JSONException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
+        }
+
+        try {
+            if(SQLiteClass.orderAdd(userName, roomId, dateBegin, dateEnd) > 0)
+                return Response.ok("{\"info\":\"Order added.\"}").build();
+            else
+                return Response.ok("{\"info\":\"Order not added.\"}").build();
+        } catch (SQLException e) {
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+    }
+
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/request.delete")
+    public Response requestDelete(final String strRequest) {
+        int userId;
+
+        try {
+            JSONObject request = new JSONObject(strRequest);
+            userId = request.getInt("user_id");
+        } catch (JSONException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
+        }
+
+        int res;
+        try {
+            res = SQLiteClass.requestDelete(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+
+        if (res > 0)
+            return Response.ok("{\"info\":\"Request deleted.\"}").build();
+        else
+            return Response.ok("{\"info\":\"Nothing to delete.\"}").build();
     }
 }

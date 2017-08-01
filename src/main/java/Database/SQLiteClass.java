@@ -3,7 +3,10 @@ package main.java.Database;
 import main.java.data.OrderedRoomData;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SQLiteClass {
 
@@ -19,7 +22,7 @@ public class SQLiteClass {
         conn.close();
     }
 
-    public static int deviceAdd(String pseudoId, String phoneNum, String name) throws SQLException, ClassNotFoundException {
+    public static int deviceAdd(String pseudoId, String phoneNum, String name) throws SQLException {
 
         Connection conn = getConnection();
         PreparedStatement pStatement;
@@ -46,28 +49,7 @@ public class SQLiteClass {
         return res;
     }
 
-    @Deprecated
-    public static int userUpdateInfo(String pseudoId, String phoneNum, String name) throws SQLException, ClassNotFoundException {
-
-        Connection conn = getConnection();
-        PreparedStatement pStatement;
-
-        pStatement = conn.prepareStatement("UPDATE devices SET phone_num = (?), name = (?) WHERE pseudo_id = (?)");
-        pStatement.setString(1, phoneNum);
-        pStatement.setString(2, name);
-        pStatement.setString(3, pseudoId);
-        int res;
-        try {
-            res = pStatement.executeUpdate();
-        } finally {
-            if (!pStatement.isClosed()) pStatement.close();
-            if (!conn.isClosed()) closeConnection(conn);
-        }
-
-        return res;
-    }
-
-    public static String version() throws SQLException, ClassNotFoundException {
+    public static String version() throws SQLException {
         Connection conn = getConnection();
         Statement statement = conn.createStatement();
         ResultSet rSet = null;
@@ -88,32 +70,7 @@ public class SQLiteClass {
         return version;
     }
 
-    @Deprecated
-    public static Map<String, Object> userGetInfo(String pseudoId) throws SQLException, ClassNotFoundException {
-
-        Connection conn = getConnection();
-        PreparedStatement pStatement;
-        ResultSet rSet = null;
-
-        pStatement = conn.prepareStatement("SELECT name,phone_num FROM devices WHERE pseudo_id = (?)");
-        pStatement.setString(1, pseudoId);
-        Map<String, Object> response = new HashMap<String, Object>();
-        try {
-            rSet = pStatement.executeQuery();
-            if (rSet.next()) {
-                response.put("name", rSet.getString("name"));
-                response.put("phone_num", rSet.getString("phone_num"));
-            }
-        } finally {
-            if (rSet != null && !rSet.isClosed()) rSet.close();
-            if (!pStatement.isClosed()) pStatement.close();
-            if (!conn.isClosed()) closeConnection(conn);
-        }
-
-        return response;
-    }
-
-    public static List<Map<String, Object>> userGetAll() throws SQLException, ClassNotFoundException {
+    public static List<Map<String, Object>> deviceGetAll() throws SQLException {
         List<Map<String, Object>> users = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();
@@ -157,6 +114,8 @@ public class SQLiteClass {
                 userRow.put("phone", rSet1.getString("phone"));
                 userRow.put("time_from", rSet1.getInt("time_from"));
                 userRow.put("time_to", rSet1.getInt("time_to"));
+                userRow.put("date_check_in", rSet1.getString("date_check_in"));
+                userRow.put("date_check_out", rSet1.getString("date_check_out"));
 
                 statement2 = conn.prepareStatement("SELECT * FROM rooms_pending WHERE user_id = (?)");
                 statement2.setInt(1, userId);
@@ -188,7 +147,6 @@ public class SQLiteClass {
         return orderDataList;
     }
 
-    @Deprecated
     private static void putRoomData(Map<String, Object> room, ResultSet rSet) throws SQLException {
         room.put("id", rSet.getInt("id"));
         room.put("capacity", rSet.getInt("capacity"));
@@ -197,88 +155,7 @@ public class SQLiteClass {
         room.put("description", rSet.getString("description"));
     }
 
-    @Deprecated
-    public static Map<String, Object> roomGetRoom(int id) throws SQLException, ClassNotFoundException {
-
-        Connection conn = getConnection();
-        PreparedStatement pStatement;
-        ResultSet rSet = null;
-
-        Map<String, Object> room = new HashMap<String, Object>();
-        pStatement = conn.prepareStatement("SELECT rooms.id, room_types.capacity, rooms.floor, rooms.room_type, room_types.description\n" +
-                "FROM rooms INNER JOIN room_types ON rooms.room_type = room_types.type WHERE rooms.id = (?)");
-        pStatement.setInt(1, id);
-        try {
-            rSet = pStatement.executeQuery();
-            if (rSet.next()) {
-                putRoomData(room, rSet);
-            }
-        } finally {
-            if (rSet != null && !rSet.isClosed()) rSet.close();
-            if (!pStatement.isClosed()) pStatement.close();
-            if (!conn.isClosed()) closeConnection(conn);
-        }
-        return room;
-    }
-
-    @Deprecated
-    public static List<Map<String, Object>> roomGetAll() throws SQLException, ClassNotFoundException {
-
-        Connection conn = getConnection();
-        PreparedStatement pStatement;
-        ResultSet rSet = null;
-
-        pStatement = conn.prepareStatement("SELECT rooms.id, room_types.capacity, rooms.floor, rooms.room_type, room_types.description " +
-                "FROM rooms INNER JOIN room_types ON rooms.room_type = room_types.type");
-        List<Map<String, Object>> rooms = new ArrayList<Map<String, Object>>();
-        try {
-            rSet = pStatement.executeQuery();
-            while (rSet.next()) {
-                Map<String, Object> cRoom = new HashMap<String, Object>();
-                putRoomData(cRoom, rSet);
-                rooms.add(cRoom);
-            }
-        } finally {
-            if (rSet != null && !rSet.isClosed()) rSet.close();
-            if (pStatement != null && !pStatement.isClosed()) pStatement.close();
-            if (!conn.isClosed()) closeConnection(conn);
-        }
-        return rooms;
-    }
-
-    @Deprecated
-    public static int roomUpdateParameters(int id, Map<String, Boolean> params) throws SQLException, ClassNotFoundException {
-
-        Connection conn = getConnection();
-        PreparedStatement pStatement;
-
-        StringBuilder sql = new StringBuilder("UPDATE rooms SET ");
-
-        // TODO: переделать без итератора
-        Iterator mapIterator = params.entrySet().iterator();
-        while (mapIterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) mapIterator.next();
-            sql.append(pair.getKey()).append(" = ");
-            sql.append(pair.getValue().equals(true) ? "1" : "0");
-            if (mapIterator.hasNext()) sql.append(",");
-        }
-
-        sql.append(" WHERE id = (?)");
-
-        pStatement = conn.prepareStatement(sql.toString());
-        pStatement.setInt(1, id);
-
-        int res;
-        try {
-            res = pStatement.executeUpdate();
-        } finally {
-            if (!pStatement.isClosed()) pStatement.close();
-            if (!conn.isClosed()) closeConnection(conn);
-        }
-        return res;
-    }
-
-    public static List<Map<String, Object>> roomSearchByRange(String strCheckIn, String strCheckOut) throws SQLException, ClassNotFoundException {
+    public static List<Map<String, Object>> roomSearchByRange(String strCheckIn, String strCheckOut) throws SQLException {
         List<Map<String, Object>> rooms = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();
@@ -334,7 +211,7 @@ public class SQLiteClass {
         return rooms;
     }
 
-    public static List<Map<String, Object>> priceGetAll() throws SQLException, ClassNotFoundException {
+    public static List<Map<String, Object>> priceGetAll() throws SQLException {
         List<Map<String, Object>> prices = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();
@@ -367,7 +244,30 @@ public class SQLiteClass {
         return prices;
     }
 
-    public static int orderAdd(String name, String phone, int time_from, int time_to, List<OrderedRoomData> orderedRoomsData) throws SQLException, ClassNotFoundException {
+    public static int orderAdd(String userName, int roomId, String dateBegin, String dateEnd) throws SQLException {
+
+        Connection conn = getConnection();
+        PreparedStatement pStatement;
+
+        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (user_name, room_id, date_begin, date_end) VALUES (?,?,?,?)");
+        pStatement.setString(1, userName);
+        pStatement.setInt(2, roomId);
+        pStatement.setString(3, dateBegin);
+        pStatement.setString(4, dateEnd);
+
+        int res;
+        try {
+            res = pStatement.executeUpdate();
+            if (res > 0) res = REQUEST_SUCCESS;
+        } finally {
+            if (!pStatement.isClosed()) pStatement.close();
+            if (!conn.isClosed()) closeConnection(conn);
+        }
+
+        return res;
+    }
+
+    public static int requestAdd(String name, String phone, int timeFrom, int timeTo, String dateCheckIn, String dateCheckOut, List<OrderedRoomData> orderedRoomsData) throws SQLException {
 
         Connection conn = getConnection();
         PreparedStatement pStatement1 = null, pStatement2 = null;
@@ -378,11 +278,13 @@ public class SQLiteClass {
         try {
             conn.setAutoCommit(false);
 
-            pStatement1 = conn.prepareStatement("INSERT INTO users_pending (name, phone, time_from, time_to) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            pStatement1 = conn.prepareStatement("INSERT INTO users_pending (name, phone, time_from, time_to, date_check_in, date_check_out) VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             pStatement1.setString(1, name);
             pStatement1.setString(2, phone);
-            pStatement1.setInt(3, time_from);
-            pStatement1.setInt(4, time_to);
+            pStatement1.setInt(3, timeFrom);
+            pStatement1.setInt(4, timeTo);
+            pStatement1.setString(5, dateCheckIn);
+            pStatement1.setString(6, dateCheckOut);
 
             pStatement1.executeUpdate();
 
@@ -420,7 +322,36 @@ public class SQLiteClass {
             if (rSet2 != null && !rSet2.isClosed()) rSet2.close();
             if (pStatement1 != null && !pStatement1.isClosed()) pStatement1.close();
             if (pStatement2 != null && !pStatement2.isClosed()) pStatement2.close();
-            if (!conn.isClosed()) conn.close();
+            if (!conn.isClosed()) closeConnection(conn);
+        }
+
+        return res;
+    }
+
+    public static int requestDelete(int userId) throws SQLException {
+
+        Connection conn = getConnection();
+        PreparedStatement pStatement = null;
+
+        int res;
+        try {
+            conn.setAutoCommit(false);
+
+            pStatement = conn.prepareStatement("DELETE FROM users_pending WHERE rowid = (?)");
+            pStatement.setInt(1, userId);
+            res = pStatement.executeUpdate();
+
+            pStatement = conn.prepareStatement("DELETE FROM rooms_pending WHERE user_id = (?)");
+            pStatement.setInt(1, userId);
+            res += pStatement.executeUpdate();
+
+            conn.commit();
+        } catch (SQLException e) {
+            conn.rollback();
+            throw e;
+        } finally {
+            if (pStatement != null && !pStatement.isClosed()) pStatement.close();
+            if (conn != null && !conn.isClosed()) closeConnection(conn);
         }
 
         return res;
