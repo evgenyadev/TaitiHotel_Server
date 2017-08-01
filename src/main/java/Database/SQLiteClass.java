@@ -252,8 +252,8 @@ public class SQLiteClass {
         pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (user_name, room_id, date_begin, date_end) VALUES (?,?,?,?)");
         pStatement.setString(1, userName);
         pStatement.setInt(2, roomId);
-        pStatement.setString(3, dateBegin);
-        pStatement.setString(4, dateEnd);
+        pStatement.setDate(3, dateBegin);
+        pStatement.setDate(4, dateEnd);
 
         int res;
         try {
