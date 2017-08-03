@@ -105,7 +105,7 @@ public class SQLiteClass {
 
         try {
             statement1 = conn.createStatement();
-            rSet1 = statement1.executeQuery("SELECT * FROM users_pending");
+            rSet1 = statement1.executeQuery("SELECT * FROM users_pending ORDER BY id");
             while (rSet1.next()) {
                 Map<String, Object> userRow = new HashMap<String, Object>();
                 int userId = rSet1.getInt("rowid");
