@@ -95,7 +95,7 @@ public class SQLiteClass {
         return users;
     }
 
-    public static List<Map<String, Object>> orderGetAll() throws SQLException {
+    public static List<Map<String, Object>> requestGetAll() throws SQLException {
         List<Map<String, Object>> orderDataList = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();

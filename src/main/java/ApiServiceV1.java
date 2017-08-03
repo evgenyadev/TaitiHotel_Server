@@ -94,11 +94,11 @@ public class ApiServiceV1 {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/request.getAll")
-    public Response orderGetAll() {
+    public Response requestGetAll() {
         List<Map<String, Object>> orderDataList;
 
         try {
-            orderDataList = SQLiteClass.orderGetAll();
+            orderDataList = SQLiteClass.requestGetAll();
         } catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
