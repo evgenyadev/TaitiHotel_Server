@@ -219,7 +219,7 @@ public class ApiServiceV1 {
         }
 
         try {
-            if(SQLiteClass.orderAdd(userName, roomId, dateBegin, dateEnd) > 0)
+            if(SQLiteClass.orderAdd(roomId, dateBegin, dateEnd) > 0)
                 return Response.ok("{\"info\":\"Order added.\"}").build();
             else
                 return Response.serverError().entity("{\"error\":\"Order not added.\"}").build();
