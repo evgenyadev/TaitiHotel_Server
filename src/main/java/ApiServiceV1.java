@@ -200,19 +200,17 @@ public class ApiServiceV1 {
         return Response.ok("{\"info\":\"Order added.\"}").build();
     }
 
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/order.add")
     public Response orderAdd(final String strRequest) {
-        String userName;
         int roomId;
         String dateBegin;
         String dateEnd;
 
         try {
             JSONObject request = new JSONObject(strRequest);
-            userName = request.getString("user_name");
             roomId = request.getInt("room_id");
             dateBegin = request.getString("date_begin");
             dateEnd = request.getString("date_end");
@@ -224,7 +222,7 @@ public class ApiServiceV1 {
             if(SQLiteClass.orderAdd(userName, roomId, dateBegin, dateEnd) > 0)
                 return Response.ok("{\"info\":\"Order added.\"}").build();
             else
-                return Response.ok("{\"info\":\"Order not added.\"}").build();
+                return Response.serverError().entity("{\"error\":\"Order not added.\"}").build();
         } catch (SQLException e) {
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
