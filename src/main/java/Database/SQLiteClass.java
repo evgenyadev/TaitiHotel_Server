@@ -244,7 +244,7 @@ public class SQLiteClass {
         return prices;
     }
 
-    public static int orderAdd(String userName, int roomId, String dateBegin, String dateEnd) throws SQLException {
+    public static int orderAdd(int roomId, String dateBegin, String dateEnd) throws SQLException {
 
         Connection conn = getConnection();
         PreparedStatement pStatement;
