@@ -232,7 +232,7 @@ public class SQLiteClass {
 			}
 		}
 			
-        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) SELECT DISTINCT ?,?,? FROM rooms WHERE NOT EXISTS (SELECT * FROM rooms_ordered WHERE (date_begin < ? AND date_end > ?) AND room_id = (?))");
+        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) SELECT DISTINCT ?,?::DATE,?::DATE FROM rooms WHERE NOT EXISTS (SELECT * FROM rooms_ordered WHERE (date_begin < ? AND date_end > ?) AND room_id = (?))");
         pStatement.setInt(1, roomId);
         pStatement.setDate(2, Date.valueOf(dateBegin));
         pStatement.setDate(3, Date.valueOf(dateEnd));
