@@ -22,33 +22,6 @@ public class SQLiteClass {
         conn.close();
     }
 
-    public static int deviceAdd(String pseudoId, String phoneNum, String name) throws SQLException {
-
-        Connection conn = getConnection();
-        PreparedStatement pStatement;
-
-        if (phoneNum.equals("null")) phoneNum = null;
-        if (name.equals("null")) name = null;
-
-        pStatement = conn.prepareStatement("INSERT INTO devices (pseudo_id,phone_num,name) VALUES (?,?,?)");
-        pStatement.setString(1, pseudoId);
-        pStatement.setString(2, phoneNum);
-        pStatement.setString(3, name);
-        int res;
-        try {
-            res = pStatement.executeUpdate();
-        } catch (SQLException e) {
-            if (e.getMessage().contains("unique constraint")) {
-                System.out.println("That pseudo_id is already exists.");
-                res = 2;
-            } else throw e;
-        } finally {
-            if (!pStatement.isClosed()) pStatement.close();
-            if (!conn.isClosed()) closeConnection(conn);
-        }
-        return res;
-    }
-
     public static String version() throws SQLException {
         Connection conn = getConnection();
         Statement statement = conn.createStatement();
@@ -94,7 +67,7 @@ public class SQLiteClass {
 
         return users;
     }
-	
+
 	public static List<Map<String, Object>> orderGetAll() throws SQLException {
 		List<Map<String, Object>> orderDataList = new ArrayList<Map<String, Object>>();
 
@@ -176,70 +149,6 @@ public class SQLiteClass {
         return requestDataList;
     }
 
-    private static void putRoomData(Map<String, Object> room, ResultSet rSet) throws SQLException {
-        room.put("id", rSet.getInt("id"));
-        room.put("capacity", rSet.getInt("capacity"));
-        room.put("floor", rSet.getInt("floor"));
-        room.put("room_type", rSet.getString("room_type"));
-        room.put("description", rSet.getString("description"));
-    }
-
-    public static List<Map<String, Object>> roomSearchByRange(String strCheckIn, String strCheckOut) throws SQLException {
-        List<Map<String, Object>> rooms = new ArrayList<Map<String, Object>>();
-
-        Connection conn = getConnection();
-        PreparedStatement pStatement;
-        ResultSet rSet = null;
-
-        // найти все пересечения дат в заказанных номерах по заданному диапазону
-        /**
-         * SELECT sum(room_types.capacity) AS capacity,
-         *        count(*) AS COUNT,
-         *        rooms.room_type,
-         *        room_types.description
-         * FROM rooms
-         * INNER JOIN room_types ON rooms.room_type = room_types.type
-         * WHERE NOT EXISTS
-         *      (SELECT *
-         *       FROM rooms_ordered
-         *       WHERE (date_begin < ? // ? - конец диапазона поиска
-         *              AND date_end > ?) // ? - начало диапазона поиска
-         *          AND rooms_ordered.room_id = rooms.id)
-         * GROUP BY rooms.room_type
-         * ORDER BY room_types.id
-         */
-        pStatement = conn.prepareStatement(
-                "SELECT sum(room_types.capacity) AS capacity, count(*) AS count, rooms.room_type, room_types.description " +
-                        "FROM rooms INNER JOIN room_types ON rooms.room_type = room_types.type " +
-                        "WHERE NOT EXISTS " +
-                        "(SELECT * " +
-                        "FROM rooms_ordered " +
-                        "WHERE (date_begin < ? AND date_end > ?) " +
-                        "AND rooms_ordered.room_id = rooms.id) " +
-                        "GROUP BY rooms.room_type, room_types.description, room_types.id " +
-                        "ORDER BY room_types.id");
-
-        pStatement.setDate(1, Date.valueOf(strCheckOut));
-        pStatement.setDate(2, Date.valueOf(strCheckIn));
-
-        try {
-            rSet = pStatement.executeQuery();
-            while (rSet.next()) {
-                Map<String, Object> cRoom = new HashMap<String, Object>();
-                cRoom.put("capacity", rSet.getInt("capacity"));
-                cRoom.put("count", rSet.getInt("count"));
-                cRoom.put("room_type", rSet.getString("room_type"));
-                cRoom.put("description", rSet.getString("description"));
-                rooms.add(cRoom);
-            }
-        } finally {
-            if (rSet != null && !rSet.isClosed()) rSet.close();
-            if (!pStatement.isClosed()) pStatement.close();
-            if (!conn.isClosed()) closeConnection(conn);
-        }
-        return rooms;
-    }
-
     public static List<Map<String, Object>> priceGetAll() throws SQLException {
         List<Map<String, Object>> prices = new ArrayList<Map<String, Object>>();
 
@@ -271,6 +180,33 @@ public class SQLiteClass {
 
         }
         return prices;
+    }
+
+    public static int deviceAdd(String pseudoId, String phoneNum, String name) throws SQLException {
+
+        Connection conn = getConnection();
+        PreparedStatement pStatement;
+
+        if (phoneNum.equals("null")) phoneNum = null;
+        if (name.equals("null")) name = null;
+
+        pStatement = conn.prepareStatement("INSERT INTO devices (pseudo_id,phone_num,name) VALUES (?,?,?)");
+        pStatement.setString(1, pseudoId);
+        pStatement.setString(2, phoneNum);
+        pStatement.setString(3, name);
+        int res;
+        try {
+            res = pStatement.executeUpdate();
+        } catch (SQLException e) {
+            if (e.getMessage().contains("unique constraint")) {
+                System.out.println("That pseudo_id is already exists.");
+                res = 2;
+            } else throw e;
+        } finally {
+            if (!pStatement.isClosed()) pStatement.close();
+            if (!conn.isClosed()) closeConnection(conn);
+        }
+        return res;
     }
 
     public static int orderAdd(int roomId, String dateBegin, String dateEnd) throws SQLException {
@@ -357,6 +293,24 @@ public class SQLiteClass {
         return res;
     }
 
+    public static int orderDelete(int orderId) throws SQLException {
+
+        Connection conn = getConnection();
+        PreparedStatement pStatement = null;
+
+        int res;
+        try {
+            pStatement = conn.prepareStatement("DELETE FROM rooms_ordered WHERE id = (?)");
+            pStatement.setInt(1, orderId);
+            res = pStatement.executeUpdate();
+        } finally {
+            if (pStatement != null && !pStatement.isClosed()) pStatement.close();
+            if (conn != null && !conn.isClosed()) closeConnection(conn);
+        }
+
+        return res;
+    }
+
     public static int requestDelete(int userId) throws SQLException {
 
         Connection conn = getConnection();
@@ -384,5 +338,61 @@ public class SQLiteClass {
         }
 
         return res;
+    }
+
+    public static List<Map<String, Object>> roomSearchByRange(String strCheckIn, String strCheckOut) throws SQLException {
+        List<Map<String, Object>> rooms = new ArrayList<Map<String, Object>>();
+
+        Connection conn = getConnection();
+        PreparedStatement pStatement;
+        ResultSet rSet = null;
+
+        // найти все пересечения дат в заказанных номерах по заданному диапазону
+        /**
+         * SELECT sum(room_types.capacity) AS capacity,
+         *        count(*) AS COUNT,
+         *        rooms.room_type,
+         *        room_types.description
+         * FROM rooms
+         * INNER JOIN room_types ON rooms.room_type = room_types.type
+         * WHERE NOT EXISTS
+         *      (SELECT *
+         *       FROM rooms_ordered
+         *       WHERE (date_begin < ? // ? - конец диапазона поиска
+         *              AND date_end > ?) // ? - начало диапазона поиска
+         *          AND rooms_ordered.room_id = rooms.id)
+         * GROUP BY rooms.room_type
+         * ORDER BY room_types.id
+         */
+        pStatement = conn.prepareStatement(
+                "SELECT sum(room_types.capacity) AS capacity, count(*) AS count, rooms.room_type, room_types.description " +
+                        "FROM rooms INNER JOIN room_types ON rooms.room_type = room_types.type " +
+                        "WHERE NOT EXISTS " +
+                        "(SELECT * " +
+                        "FROM rooms_ordered " +
+                        "WHERE (date_begin < ? AND date_end > ?) " +
+                        "AND rooms_ordered.room_id = rooms.id) " +
+                        "GROUP BY rooms.room_type, room_types.description, room_types.id " +
+                        "ORDER BY room_types.id");
+
+        pStatement.setDate(1, Date.valueOf(strCheckOut));
+        pStatement.setDate(2, Date.valueOf(strCheckIn));
+
+        try {
+            rSet = pStatement.executeQuery();
+            while (rSet.next()) {
+                Map<String, Object> cRoom = new HashMap<String, Object>();
+                cRoom.put("capacity", rSet.getInt("capacity"));
+                cRoom.put("count", rSet.getInt("count"));
+                cRoom.put("room_type", rSet.getString("room_type"));
+                cRoom.put("description", rSet.getString("description"));
+                rooms.add(cRoom);
+            }
+        } finally {
+            if (rSet != null && !rSet.isClosed()) rSet.close();
+            if (!pStatement.isClosed()) pStatement.close();
+            if (!conn.isClosed()) closeConnection(conn);
+        }
+        return rooms;
     }
 }
