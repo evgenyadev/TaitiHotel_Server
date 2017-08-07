@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" afterPath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" />
-    </list>
+    <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -88,9 +85,10 @@
       <file leaf-file-name="SQLiteClass.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="249" column="9" lean-forward="true" selection-start-line="249" selection-start-column="9" selection-end-line="249" selection-end-column="9" />
+            <state relative-caret-position="0">
+              <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <marker date="1502134508695" expanded="true" signature="917:944" ph="SELECT versi... " />
                 <marker date="1502134508695" expanded="true" signature="1695:1739" ph="SELECT pseud... devices" />
                 <marker date="1502134508695" expanded="true" signature="2703:2769" ph="SELECT * FRO... rooms_ordered" />
@@ -637,16 +635,15 @@
       <workItem from="1501528901788" duration="1189000" />
       <workItem from="1501583893179" duration="10343000" />
       <workItem from="1502113077700" duration="1944000" />
-      <workItem from="1502134291402" duration="196000" />
+      <workItem from="1502134291402" duration="580000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32581000" />
+    <option name="totallyTimeSpent" value="32965000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -709,6 +706,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <marker date="1502134508695" expanded="true" signature="917:944" ph="SELECT versi... " />
             <marker date="1502134508695" expanded="true" signature="1695:1739" ph="SELECT pseud... devices" />
             <marker date="1502134508695" expanded="true" signature="2703:2769" ph="SELECT * FRO... rooms_ordered" />
@@ -868,17 +866,16 @@
             <element signature="method#deviceAdd#0;class#ApiServiceV1#0" expanded="false" />
             <element signature="e#4914#4919#0" expanded="false" />
             <element signature="method#orderAdd#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="method#requestAdd#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="249" column="9" lean-forward="true" selection-start-line="249" selection-start-column="9" selection-end-line="249" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
           <folding>
+            <element signature="imports" expanded="true" />
             <marker date="1502134508695" expanded="true" signature="917:944" ph="SELECT versi... " />
             <marker date="1502134508695" expanded="true" signature="1695:1739" ph="SELECT pseud... devices" />
             <marker date="1502134508695" expanded="true" signature="2703:2769" ph="SELECT * FRO... rooms_ordered" />
