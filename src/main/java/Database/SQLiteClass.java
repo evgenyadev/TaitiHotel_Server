@@ -249,10 +249,11 @@ public class SQLiteClass {
         Connection conn = getConnection();
         PreparedStatement pStatement;
 
-        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) VALUES (?,?,?)");
+        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) SELECT ?,?,? FROM rooms WHERE id = ?");
         pStatement.setInt(1, roomId);
         pStatement.setDate(2, Date.valueOf(dateBegin));
         pStatement.setDate(3, Date.valueOf(dateEnd));
+		pStatement.setInt(4, roomId);
 
         int res;
         try {
