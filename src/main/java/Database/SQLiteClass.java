@@ -12,6 +12,7 @@ public class SQLiteClass {
 
     public static final int REQUEST_FAILED = -1;
     public static final int REQUEST_SUCCESS = 1;
+	public static final int NOT_EXISTS = -2;
 
     private static Connection getConnection() throws SQLException {
         String dbUrl = System.getenv("JDBC_DATABASE_URL");
@@ -213,12 +214,30 @@ public class SQLiteClass {
 
         Connection conn = getConnection();
         PreparedStatement pStatement;
-
-        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) SELECT ?,?,? FROM rooms WHERE id = ?");
+		ResultSet rSet = null;
+		
+		pStatement = conn.prepareStatement("SELECT count(*) FROM rooms WHERE id = (?)");
+		pStatement.setInt(1, roomId);
+		int count = 0;
+		try {
+			rSet = pStatement.executeQuery();
+			if (rSet.next())
+				count = rSet.getInt(1);
+		} finally {
+			if (rSet != null && !rSet.isClosed) rSet.close();
+			if (count == 0) {
+				if (!pStatement.isClosed()) pStatement.close();
+				if (!conn.isClosed()) closeConnection(conn);
+				return NOT_EXISTS;
+			}
+		}
+			
+        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) SELECT ?,?,? FROM rooms WHERE NOT EXISTS (SELECT * FROM rooms_ordered WHERE (date_begin < ? AND date_end > ?))");
         pStatement.setInt(1, roomId);
         pStatement.setDate(2, Date.valueOf(dateBegin));
         pStatement.setDate(3, Date.valueOf(dateEnd));
-		pStatement.setInt(4, roomId);
+		pStatement.setDate(4, Date.valueOf(dateEnd));
+		pStatement.setDate(5, Date.valueOf(dateBegin));
 
         int res;
         try {

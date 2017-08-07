@@ -171,14 +171,21 @@ public class ApiServiceV1 {
             return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
         }
 
+		int res;
         try {
-            if (SQLiteClass.orderAdd(roomId, dateBegin, dateEnd) > 0)
-                return Response.ok("{\"info\":\"Order added.\"}").build();
-            else
-                return Response.serverError().entity("{\"error\":\"Order not added.\"}").build();
+           res = SQLiteClass.orderAdd(roomId, dateBegin, dateEnd);
         } catch (SQLException e) {
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+           return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
+		
+		if (res == SQLiteClass.REQUEST_SUCCESS)
+            return Response.ok("{\"info\":\"Order added.\"}").build();
+            
+		if (res == SQLiteClass.NOT_EXISTS)
+			return Response.serverError().entity("{\"error\":\"Room not exists.\"}").build();
+			
+		if (res == 0)
+			return Response.serverError().entity("{\"error\":\"Order not added.\"}").build();
     }
 
     @POST
