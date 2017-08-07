@@ -224,7 +224,7 @@ public class SQLiteClass {
 			if (rSet.next())
 				count = rSet.getInt(1);
 		} finally {
-			if (rSet != null && !rSet.isClosed) rSet.close();
+			if (rSet != null && !rSet.isClosed()) rSet.close();
 			if (count == 0) {
 				if (!pStatement.isClosed()) pStatement.close();
 				if (!conn.isClosed()) closeConnection(conn);
@@ -232,12 +232,13 @@ public class SQLiteClass {
 			}
 		}
 			
-        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) SELECT ?,?,? FROM rooms WHERE NOT EXISTS (SELECT * FROM rooms_ordered WHERE (date_begin < ? AND date_end > ?))");
+        pStatement = conn.prepareStatement("INSERT INTO rooms_ordered (room_id, date_begin, date_end) SELECT ?,?,? FROM rooms WHERE NOT EXISTS (SELECT * FROM rooms_ordered WHERE (date_begin < ? AND date_end > ?) AND room_id = (?))");
         pStatement.setInt(1, roomId);
         pStatement.setDate(2, Date.valueOf(dateBegin));
         pStatement.setDate(3, Date.valueOf(dateEnd));
 		pStatement.setDate(4, Date.valueOf(dateEnd));
 		pStatement.setDate(5, Date.valueOf(dateBegin));
+        pStatement.setInt(6, roomId);
 
         int res;
         try {

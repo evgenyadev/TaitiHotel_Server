@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1" />
+    <list default="true" id="e6321db2-542c-45c9-a2f3-5230f6dcfa2f" name="Default" comment="test1">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" afterPath="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -81,43 +84,32 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="SQLiteClass.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-130">
-              <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+            <state relative-caret-position="632">
+              <caret line="249" column="9" lean-forward="true" selection-start-line="249" selection-start-column="9" selection-end-line="249" selection-end-column="9" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getConnection#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#closeConnection#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#version#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#deviceGetAll#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#orderGetAll#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#requestGetAll#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#priceGetAll#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#deviceAdd#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#orderAdd#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#requestAdd#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#orderDelete#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#requestDelete#0;class#SQLiteClass#0" expanded="false" />
-                <element signature="method#roomSearchByRange#0;class#SQLiteClass#0" expanded="false" />
-                <marker date="1502114859189" expanded="false" signature="875:902" ph="SELECT versi... " />
-                <marker date="1502114859189" expanded="false" signature="1653:1697" ph="SELECT pseud... devices" />
-                <marker date="1502114859189" expanded="false" signature="2661:2727" ph="SELECT * FRO... rooms_ordered" />
-                <marker date="1502114859189" expanded="false" signature="3874:3916" ph="SELECT * FRO... users_pending" />
-                <marker date="1502114859189" expanded="false" signature="4602:4649" ph="SELECT * FRO... rooms_pending" />
-                <marker date="1502114859189" expanded="false" signature="6344:6364" ph="SELECT * FRO... prices" />
-                <marker date="1502114859189" expanded="false" signature="7618:7679" ph="INSERT INTO devices... " />
-                <marker date="1502114859189" expanded="false" signature="8510:8604" ph="INSERT INTO rooms_ordered... " />
-                <marker date="1502114859189" expanded="false" signature="8568:8604" ph="SELECT ?,?,?... rooms" />
-                <marker date="1502114859189" expanded="false" signature="9556:9667" ph="INSERT INTO users_pending... " />
-                <marker date="1502114859189" expanded="false" signature="10414:10540" ph="INSERT INTO rooms_pending... " />
-                <marker date="1502114859189" expanded="true" signature="12128:12168" ph="DELETE FROM " />
-                <marker date="1502114859189" expanded="false" signature="12753:12796" ph="DELETE FROM " />
-                <marker date="1502114859189" expanded="false" signature="12937:12982" ph="DELETE FROM " />
-                <marker date="1502114859189" expanded="false" signature="14505:15121" ph="SELECT sum(r... rooms" />
-                <marker date="1502114859189" expanded="false" signature="14784:14975" ph="SELECT * FRO... rooms_ordered" />
+                <marker date="1502134508695" expanded="true" signature="917:944" ph="SELECT versi... " />
+                <marker date="1502134508695" expanded="true" signature="1695:1739" ph="SELECT pseud... devices" />
+                <marker date="1502134508695" expanded="true" signature="2703:2769" ph="SELECT * FRO... rooms_ordered" />
+                <marker date="1502134508695" expanded="true" signature="3916:3958" ph="SELECT * FRO... users_pending" />
+                <marker date="1502134508695" expanded="true" signature="4644:4691" ph="SELECT * FRO... rooms_pending" />
+                <marker date="1502134508695" expanded="true" signature="6386:6406" ph="SELECT * FRO... prices" />
+                <marker date="1502134508695" expanded="true" signature="7660:7721" ph="INSERT INTO devices... " />
+                <marker date="1502134508695" expanded="true" signature="8573:8614" ph="SELECT count... rooms" />
+                <marker date="1502134508695" expanded="true" signature="9031:9217" ph="INSERT INTO rooms_ordered... " />
+                <marker date="1502134508695" expanded="true" signature="9089:9217" ph="SELECT ?,?,?... rooms" />
+                <marker date="1502134508695" expanded="true" signature="9131:9198" ph="SELECT * FRO... rooms_ordered" />
+                <marker date="1502134508695" expanded="true" signature="9131:9216" ph="SELECT * FRO... rooms_ordered" />
+                <marker date="1502134508695" expanded="false" signature="10273:10384" ph="INSERT INTO users_pending... " />
+                <marker date="1502134508695" expanded="false" signature="11131:11257" ph="INSERT INTO rooms_pending... " />
+                <marker date="1502134508695" expanded="false" signature="12845:12885" ph="DELETE FROM " />
+                <marker date="1502134508695" expanded="false" signature="13470:13513" ph="DELETE FROM " />
+                <marker date="1502134508695" expanded="false" signature="13654:13699" ph="DELETE FROM " />
+                <marker date="1502134508695" expanded="false" signature="15222:15838" ph="SELECT sum(r... rooms" />
+                <marker date="1502134508695" expanded="false" signature="15501:15692" ph="SELECT * FRO... rooms_ordered" />
               </folding>
             </state>
           </provider>
@@ -147,8 +139,8 @@
         <option value="$PROJECT_DIR$/src/main/java/data/OrderData.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4284ca4c-4bad-4447-bff1-8d64b6b75b6f/console.sql" />
         <option value="dbtable:/66ae4a45/4284ca4c-4bad-4447-bff1-8d64b6b75b6f/main.rooms_ordered" />
-        <option value="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/ApiServiceV1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java" />
       </list>
     </option>
   </component>
@@ -180,8 +172,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -270,6 +260,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -645,14 +637,16 @@
       <workItem from="1501528901788" duration="1189000" />
       <workItem from="1501583893179" duration="10343000" />
       <workItem from="1502113077700" duration="1944000" />
+      <workItem from="1502134291402" duration="196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32385000" />
+    <option name="totallyTimeSpent" value="32581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -664,7 +658,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4141844" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20774193" sideWeight="0.7036145" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21096775" sideWeight="0.7036145" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20129032" sideWeight="0.29638556" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18774194" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24967742" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -710,6 +704,34 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502134508695" expanded="true" signature="917:944" ph="SELECT versi... " />
+            <marker date="1502134508695" expanded="true" signature="1695:1739" ph="SELECT pseud... devices" />
+            <marker date="1502134508695" expanded="true" signature="2703:2769" ph="SELECT * FRO... rooms_ordered" />
+            <marker date="1502134508695" expanded="true" signature="3916:3958" ph="SELECT * FRO... users_pending" />
+            <marker date="1502134508695" expanded="true" signature="4644:4691" ph="SELECT * FRO... rooms_pending" />
+            <marker date="1502134508695" expanded="true" signature="6386:6406" ph="SELECT * FRO... prices" />
+            <marker date="1502134508695" expanded="true" signature="7660:7721" ph="INSERT INTO devices... " />
+            <marker date="1502134508695" expanded="true" signature="8573:8614" ph="SELECT count... rooms" />
+            <marker date="1502134508695" expanded="true" signature="9031:9217" ph="INSERT INTO rooms_ordered... " />
+            <marker date="1502134508695" expanded="true" signature="9089:9217" ph="SELECT ?,?,?... rooms" />
+            <marker date="1502134508695" expanded="true" signature="9131:9198" ph="SELECT * FRO... rooms_ordered" />
+            <marker date="1502134508695" expanded="true" signature="9131:9216" ph="SELECT * FRO... rooms_ordered" />
+            <marker date="1502134508695" expanded="false" signature="10273:10384" ph="INSERT INTO users_pending... " />
+            <marker date="1502134508695" expanded="false" signature="11131:11257" ph="INSERT INTO rooms_pending... " />
+            <marker date="1502134508695" expanded="false" signature="12845:12885" ph="DELETE FROM " />
+            <marker date="1502134508695" expanded="false" signature="13470:13513" ph="DELETE FROM " />
+            <marker date="1502134508695" expanded="false" signature="13654:13699" ph="DELETE FROM " />
+            <marker date="1502134508695" expanded="false" signature="15222:15838" ph="SELECT sum(r... rooms" />
+            <marker date="1502134508695" expanded="false" signature="15501:15692" ph="SELECT * FRO... rooms_ordered" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -846,9 +868,7 @@
             <element signature="method#deviceAdd#0;class#ApiServiceV1#0" expanded="false" />
             <element signature="e#4914#4919#0" expanded="false" />
             <element signature="method#orderAdd#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#5983#5988#0" expanded="false" />
             <element signature="method#requestAdd#0;class#ApiServiceV1#0" expanded="false" />
-            <element signature="e#9250#9254#0" expanded="false" />
             <element signature="method#roomSearchByRange#0;class#ApiServiceV1#0" expanded="false" />
           </folding>
         </state>
@@ -856,39 +876,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Database/SQLiteClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-130">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state relative-caret-position="632">
+          <caret line="249" column="9" lean-forward="true" selection-start-line="249" selection-start-column="9" selection-end-line="249" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getConnection#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#closeConnection#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#version#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#deviceGetAll#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#orderGetAll#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#requestGetAll#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#priceGetAll#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#deviceAdd#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#orderAdd#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#requestAdd#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#orderDelete#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#requestDelete#0;class#SQLiteClass#0" expanded="false" />
-            <element signature="method#roomSearchByRange#0;class#SQLiteClass#0" expanded="false" />
-            <marker date="1502114859189" expanded="false" signature="875:902" ph="SELECT versi... " />
-            <marker date="1502114859189" expanded="false" signature="1653:1697" ph="SELECT pseud... devices" />
-            <marker date="1502114859189" expanded="false" signature="2661:2727" ph="SELECT * FRO... rooms_ordered" />
-            <marker date="1502114859189" expanded="false" signature="3874:3916" ph="SELECT * FRO... users_pending" />
-            <marker date="1502114859189" expanded="false" signature="4602:4649" ph="SELECT * FRO... rooms_pending" />
-            <marker date="1502114859189" expanded="false" signature="6344:6364" ph="SELECT * FRO... prices" />
-            <marker date="1502114859189" expanded="false" signature="7618:7679" ph="INSERT INTO devices... " />
-            <marker date="1502114859189" expanded="false" signature="8510:8604" ph="INSERT INTO rooms_ordered... " />
-            <marker date="1502114859189" expanded="false" signature="8568:8604" ph="SELECT ?,?,?... rooms" />
-            <marker date="1502114859189" expanded="false" signature="9556:9667" ph="INSERT INTO users_pending... " />
-            <marker date="1502114859189" expanded="false" signature="10414:10540" ph="INSERT INTO rooms_pending... " />
-            <marker date="1502114859189" expanded="true" signature="12128:12168" ph="DELETE FROM " />
-            <marker date="1502114859189" expanded="false" signature="12753:12796" ph="DELETE FROM " />
-            <marker date="1502114859189" expanded="false" signature="12937:12982" ph="DELETE FROM " />
-            <marker date="1502114859189" expanded="false" signature="14505:15121" ph="SELECT sum(r... rooms" />
-            <marker date="1502114859189" expanded="false" signature="14784:14975" ph="SELECT * FRO... rooms_ordered" />
+            <marker date="1502134508695" expanded="true" signature="917:944" ph="SELECT versi... " />
+            <marker date="1502134508695" expanded="true" signature="1695:1739" ph="SELECT pseud... devices" />
+            <marker date="1502134508695" expanded="true" signature="2703:2769" ph="SELECT * FRO... rooms_ordered" />
+            <marker date="1502134508695" expanded="true" signature="3916:3958" ph="SELECT * FRO... users_pending" />
+            <marker date="1502134508695" expanded="true" signature="4644:4691" ph="SELECT * FRO... rooms_pending" />
+            <marker date="1502134508695" expanded="true" signature="6386:6406" ph="SELECT * FRO... prices" />
+            <marker date="1502134508695" expanded="true" signature="7660:7721" ph="INSERT INTO devices... " />
+            <marker date="1502134508695" expanded="true" signature="8573:8614" ph="SELECT count... rooms" />
+            <marker date="1502134508695" expanded="true" signature="9031:9217" ph="INSERT INTO rooms_ordered... " />
+            <marker date="1502134508695" expanded="true" signature="9089:9217" ph="SELECT ?,?,?... rooms" />
+            <marker date="1502134508695" expanded="true" signature="9131:9198" ph="SELECT * FRO... rooms_ordered" />
+            <marker date="1502134508695" expanded="true" signature="9131:9216" ph="SELECT * FRO... rooms_ordered" />
+            <marker date="1502134508695" expanded="false" signature="10273:10384" ph="INSERT INTO users_pending... " />
+            <marker date="1502134508695" expanded="false" signature="11131:11257" ph="INSERT INTO rooms_pending... " />
+            <marker date="1502134508695" expanded="false" signature="12845:12885" ph="DELETE FROM " />
+            <marker date="1502134508695" expanded="false" signature="13470:13513" ph="DELETE FROM " />
+            <marker date="1502134508695" expanded="false" signature="13654:13699" ph="DELETE FROM " />
+            <marker date="1502134508695" expanded="false" signature="15222:15838" ph="SELECT sum(r... rooms" />
+            <marker date="1502134508695" expanded="false" signature="15501:15692" ph="SELECT * FRO... rooms_ordered" />
           </folding>
         </state>
       </provider>
