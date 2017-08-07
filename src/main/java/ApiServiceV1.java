@@ -181,11 +181,12 @@ public class ApiServiceV1 {
 		if (res == SQLiteClass.REQUEST_SUCCESS)
             return Response.ok("{\"info\":\"Order added.\"}").build();
             
-		if (res == SQLiteClass.NOT_EXISTS)
+		else if (res == SQLiteClass.NOT_EXISTS)
 			return Response.serverError().entity("{\"error\":\"Room not exists.\"}").build();
 			
-		if (res == 0)
+		else
 			return Response.serverError().entity("{\"error\":\"Order not added.\"}").build();
+		
     }
 
     @POST
