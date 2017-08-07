@@ -94,9 +94,38 @@ public class SQLiteClass {
 
         return users;
     }
+	
+	public static List<Map<String, Object>> orderGetAll() throws SQLException {
+		List<Map<String, Object>> orderDataList = new ArrayList<Map<String, Object>>();
+
+		Connection conn = getConnection();
+		Statement statement = null;
+		ResultSet rSet = null;
+
+		try {
+		    statement = conn.createStatement();
+            rSet = statement.executeQuery("SELECT * FROM rooms_ordered ORDER BY room_id, date_begin, date_end");
+
+            while (rSet.next()) {
+                Map<String, Object> roomRow = new HashMap<String, Object>();
+                roomRow.put("id", rSet.getInt("id"));
+                roomRow.put("room_id", rSet.getInt("room_id"));
+                roomRow.put("date_begin", rSet.getString("date_begin"));
+                roomRow.put("date_end", rSet.getString("date_end"));
+
+                orderDataList.add(roomRow);
+            }
+        } finally {
+            if (rSet != null && !rSet.isClosed()) rSet.close();
+            if (statement != null && !statement.isClosed()) statement.close();
+            if (!conn.isClosed()) conn.close();
+        }
+
+        return orderDataList;
+    }
 
     public static List<Map<String, Object>> requestGetAll() throws SQLException {
-        List<Map<String, Object>> orderDataList = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> requestDataList = new ArrayList<Map<String, Object>>();
 
         Connection conn = getConnection();
         Statement statement1 = null;
@@ -134,7 +163,7 @@ public class SQLiteClass {
                 }
                 userRow.put("orderedRoomData", orderedRoomData);
 
-                orderDataList.add(userRow);
+                requestDataList.add(userRow);
             }
         } finally {
             if (rSet1 != null && !rSet1.isClosed()) rSet1.close();
@@ -144,7 +173,7 @@ public class SQLiteClass {
             if (!conn.isClosed()) conn.close();
         }
 
-        return orderDataList;
+        return requestDataList;
     }
 
     private static void putRoomData(Map<String, Object> room, ResultSet rSet) throws SQLException {

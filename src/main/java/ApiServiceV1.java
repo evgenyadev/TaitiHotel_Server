@@ -58,15 +58,15 @@ public class ApiServiceV1 {
     public Response info() {
         JSONObject jsonObject = new JSONObject();
 
-		String version = null;
-		try {
-			version = SQLiteClass.version();
-		} catch (SQLException e) {
+        String version = null;
+        try {
+            version = SQLiteClass.version();
+        } catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
-		
-		jsonObject.put("v", version);
+
+        jsonObject.put("v", version);
 
         return Response.status(Response.Status.OK).entity(jsonObject.toString()).build();
     }
@@ -84,7 +84,7 @@ public class ApiServiceV1 {
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
 
-		// todo make json array without "users"
+        // todo make json array without "users"
         for (Map<String, Object> user : users) {
             response.append("users", user);
         }
@@ -93,12 +93,12 @@ public class ApiServiceV1 {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/request.getAll")
-    public Response requestGetAll() {
+    @Path("/order.getAll")
+    public Response orderGetAll() {
         List<Map<String, Object>> orderDataList;
 
         try {
-            orderDataList = SQLiteClass.requestGetAll();
+            orderDataList = SQLiteClass.orderGetAll();
         } catch (SQLException e) {
             e.printStackTrace();
             return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
@@ -106,145 +106,167 @@ public class ApiServiceV1 {
 
         JSONArray response = new JSONArray(orderDataList);
 
-        if (orderDataList.isEmpty()) {
-            return Response.noContent().build();
-        } else
-            return Response.ok(response.toString()).build();
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/room.searchByRange")
-    public Response roomSearchByRange(@QueryParam("check_in") final String checkIn, @QueryParam("check_out") final String checkOut) {
-        List<Map<String, Object>> rooms;
-        try {
-            rooms = SQLiteClass.roomSearchByRange(checkIn, checkOut);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        }
-
-        JSONArray response = new JSONArray(rooms);
-
-        if (rooms.isEmpty())
+        if (orderDataList.isEmpty())
             return Response.noContent().build();
         else
             return Response.ok(response.toString()).build();
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/price.getAll")
-    public Response priceGetAll()  {
-        List<Map<String, Object>> prices;
-        try {
-            prices = SQLiteClass.priceGetAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        }
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        @Path("/request.getAll")
+        public Response requestGetAll () {
+            List<Map<String, Object>> requestDataList;
 
-        JSONArray response = new JSONArray(prices);
-
-        if (prices.isEmpty())
-            return Response.noContent().build();
-        else
-            return Response.ok(response.toString()).build();
-    }
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/request.add")
-    public Response requestAdd(final String strRequest) {
-        String name;
-        String phone;
-        int timeFrom;
-        int timeTo;
-        String dateCheckIn;
-        String dateCheckOut;
-        List<OrderedRoomData> orderedRoomsData = new ArrayList<OrderedRoomData>();
-
-        // разобрать данные по переменным
-        try {
-            JSONObject order = new JSONObject(strRequest);
-            name = order.getString("name");
-            phone = order.getString("phone");
-            timeFrom = order.getInt("time_from");
-            timeTo = order.getInt("time_to");
-            dateCheckIn = order.getString("date_check_in");
-            dateCheckOut = order.getString("date_check_out");
-            JSONArray roomsData = order.getJSONArray("orderedRoomsData");
-            for (int i = 0; i < roomsData.length(); i++) {
-                JSONObject row = roomsData.getJSONObject(i);
-                OrderedRoomData roomData = new OrderedRoomData();
-                roomData.roomType = row.getString("roomType");
-                roomData.roomsCount = row.getInt("roomsCount");
-                roomData.adultsCount = row.getInt("adultsCount");
-                roomData.child_3_count = row.getInt("child_3");
-                roomData.child_3_10_count = row.getInt("child_3_10");
-                orderedRoomsData.add(roomData);
+            try {
+                requestDataList = SQLiteClass.requestGetAll();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
             }
-        } catch (JSONException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
-        }
 
-        // добавить заказ в базу
-        try {
-            SQLiteClass.requestAdd(name, phone, timeFrom, timeTo, dateCheckIn, dateCheckOut, orderedRoomsData);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        }
+            JSONArray response = new JSONArray(requestDataList);
 
-        return Response.ok("{\"info\":\"Order added.\"}").build();
-    }
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/order.add")
-    public Response orderAdd(final String strRequest) {
-        int roomId;
-        String dateBegin;
-        String dateEnd;
-
-        try {
-            JSONObject request = new JSONObject(strRequest);
-            roomId = request.getInt("room_id");
-            dateBegin = request.getString("date_begin");
-            dateEnd = request.getString("date_end");
-        } catch (JSONException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
-        }
-
-        try {
-            if(SQLiteClass.orderAdd(roomId, dateBegin, dateEnd) > 0)
-                return Response.ok("{\"info\":\"Order added.\"}").build();
+            if (requestDataList.isEmpty())
+                return Response.noContent().build();
             else
-                return Response.serverError().entity("{\"error\":\"Order not added.\"}").build();
-        } catch (SQLException e) {
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
-        }
-    }
-
-    @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/request.delete/{id}")
-    public Response requestDelete(@PathParam("id") int userId) {
-
-        int res;
-        try {
-            res = SQLiteClass.requestDelete(userId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+                return Response.ok(response.toString()).build();
         }
 
-        if (res > 0)
-            return Response.ok("{\"info\":\"Request deleted.\"}").build();
-        else
-            return Response.ok("{\"info\":\"Nothing to delete.\"}").build();
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        @Path("/room.searchByRange")
+        public Response roomSearchByRange ( @QueryParam("check_in") final String checkIn,
+        @QueryParam("check_out") final String checkOut){
+            List<Map<String, Object>> rooms;
+            try {
+                rooms = SQLiteClass.roomSearchByRange(checkIn, checkOut);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+            }
+
+            JSONArray response = new JSONArray(rooms);
+
+            if (rooms.isEmpty())
+                return Response.noContent().build();
+            else
+                return Response.ok(response.toString()).build();
+        }
+
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        @Path("/price.getAll")
+        public Response priceGetAll () {
+            List<Map<String, Object>> prices;
+            try {
+                prices = SQLiteClass.priceGetAll();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+            }
+
+            JSONArray response = new JSONArray(prices);
+
+            if (prices.isEmpty())
+                return Response.noContent().build();
+            else
+                return Response.ok(response.toString()).build();
+        }
+
+        @POST
+        @Consumes(MediaType.APPLICATION_JSON)
+        @Produces(MediaType.APPLICATION_JSON)
+        @Path("/request.add")
+        public Response requestAdd ( final String strRequest){
+            String name;
+            String phone;
+            int timeFrom;
+            int timeTo;
+            String dateCheckIn;
+            String dateCheckOut;
+            List<OrderedRoomData> orderedRoomsData = new ArrayList<OrderedRoomData>();
+
+            // разобрать данные по переменным
+            try {
+                JSONObject order = new JSONObject(strRequest);
+                name = order.getString("name");
+                phone = order.getString("phone");
+                timeFrom = order.getInt("time_from");
+                timeTo = order.getInt("time_to");
+                dateCheckIn = order.getString("date_check_in");
+                dateCheckOut = order.getString("date_check_out");
+                JSONArray roomsData = order.getJSONArray("orderedRoomsData");
+                for (int i = 0; i < roomsData.length(); i++) {
+                    JSONObject row = roomsData.getJSONObject(i);
+                    OrderedRoomData roomData = new OrderedRoomData();
+                    roomData.roomType = row.getString("roomType");
+                    roomData.roomsCount = row.getInt("roomsCount");
+                    roomData.adultsCount = row.getInt("adultsCount");
+                    roomData.child_3_count = row.getInt("child_3");
+                    roomData.child_3_10_count = row.getInt("child_3_10");
+                    orderedRoomsData.add(roomData);
+                }
+            } catch (JSONException e) {
+                return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
+            }
+
+            // добавить заказ в базу
+            try {
+                SQLiteClass.requestAdd(name, phone, timeFrom, timeTo, dateCheckIn, dateCheckOut, orderedRoomsData);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+            }
+
+            return Response.ok("{\"info\":\"Order added.\"}").build();
+        }
+
+        @POST
+        @Consumes(MediaType.APPLICATION_JSON)
+        @Produces(MediaType.APPLICATION_JSON)
+        @Path("/order.add")
+        public Response orderAdd ( final String strRequest){
+            int roomId;
+            String dateBegin;
+            String dateEnd;
+
+            try {
+                JSONObject request = new JSONObject(strRequest);
+                roomId = request.getInt("room_id");
+                dateBegin = request.getString("date_begin");
+                dateEnd = request.getString("date_end");
+            } catch (JSONException e) {
+                return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Invalid JSON data.\"}").build();
+            }
+
+            try {
+                if (SQLiteClass.orderAdd(roomId, dateBegin, dateEnd) > 0)
+                    return Response.ok("{\"info\":\"Order added.\"}").build();
+                else
+                    return Response.serverError().entity("{\"error\":\"Order not added.\"}").build();
+            } catch (SQLException e) {
+                return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+            }
+        }
+
+        @DELETE
+        @Consumes(MediaType.APPLICATION_JSON)
+        @Produces(MediaType.APPLICATION_JSON)
+        @Path("/request.delete/{id}")
+        public Response requestDelete ( @PathParam("id") int userId){
+
+            int res;
+            try {
+                res = SQLiteClass.requestDelete(userId);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+            }
+
+            if (res > 0)
+                return Response.ok("{\"info\":\"Request deleted.\"}").build();
+            else
+                return Response.ok("{\"info\":\"Nothing to delete.\"}").build();
+        }
     }
-}
