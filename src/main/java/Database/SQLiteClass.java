@@ -10,6 +10,8 @@ import java.util.Map;
 
 public class SQLiteClass {
 
+    public static final int PERMISSION_ADMIN = 3;
+
     public static final int REQUEST_FAILED = -1;
     public static final int REQUEST_SUCCESS = 1;
 	public static final int NOT_EXISTS = -2;
@@ -414,5 +416,28 @@ public class SQLiteClass {
             if (!conn.isClosed()) closeConnection(conn);
         }
         return rooms;
+    }
+
+    public static boolean checkPermission(String token, int minAccessLevel) throws SQLException {
+
+        Connection conn = getConnection();
+        PreparedStatement pStatement;
+        ResultSet rSet = null;
+
+        pStatement = conn.prepareStatement("SELECT access_level FROM devices WHERE pseudo_id = (?)");
+        pStatement.setString(1, token);
+
+        int accessLevel = 0;
+        try {
+            rSet = pStatement.executeQuery();
+            if (rSet.next())
+                accessLevel = rSet.getInt("access_level");
+        } finally {
+            if (rSet != null && !rSet.isClosed()) rSet.close();
+            if (!pStatement.isClosed()) pStatement.close();
+            if (!conn.isClosed()) closeConnection(conn);
+        }
+
+        return accessLevel >= minAccessLevel;
     }
 }

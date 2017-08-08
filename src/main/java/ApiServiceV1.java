@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static main.java.Database.SQLiteClass.PERMISSION_ADMIN;
+
 @Path("/v1")
 public class ApiServiceV1 {
 
@@ -39,7 +41,16 @@ public class ApiServiceV1 {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/device.getAll")
-    public Response deviceGetAll() {
+    public Response deviceGetAll(@HeaderParam("Token") String token) {
+
+        try {
+            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+                return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+
         JSONObject response = new JSONObject();
         List<Map<String, Object>> users;
         try {
@@ -59,7 +70,16 @@ public class ApiServiceV1 {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/order.getAll")
-    public Response orderGetAll() {
+    public Response orderGetAll(@HeaderParam("Token") String token) {
+
+        try {
+            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+                return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+
         List<Map<String, Object>> orderDataList;
 
         try {
@@ -80,7 +100,16 @@ public class ApiServiceV1 {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/request.getAll")
-    public Response requestGetAll() {
+    public Response requestGetAll(@HeaderParam("Token") String token) {
+
+        try {
+            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+                return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+
         List<Map<String, Object>> requestDataList;
 
         try {
@@ -157,7 +186,16 @@ public class ApiServiceV1 {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/order.add")
-    public Response orderAdd(final String strRequest) {
+    public Response orderAdd(final String strRequest, @HeaderParam("Token") String token) {
+
+        try {
+            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+                return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+
         int roomId;
         String dateBegin;
         String dateEnd;
@@ -240,7 +278,15 @@ public class ApiServiceV1 {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/order.delete/{id}")
-    public Response orderDelete(@PathParam("id") int orderId) {
+    public Response orderDelete(@PathParam("id") int orderId, @HeaderParam("Token") String token) {
+
+        try {
+            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+                return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
 
         int res;
         try {
@@ -259,7 +305,15 @@ public class ApiServiceV1 {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/request.delete/{id}")
-    public Response requestDelete(@PathParam("id") int userId) {
+    public Response requestDelete(@PathParam("id") int userId, @HeaderParam("Token") String token) {
+
+        try {
+            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+                return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
 
         int res;
         try {
