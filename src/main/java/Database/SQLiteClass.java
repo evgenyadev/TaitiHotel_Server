@@ -11,6 +11,8 @@ import java.util.Map;
 public class SQLiteClass {
 
     public static final int PERMISSION_ADMIN = 3;
+    public static final int PERMISSION_MODERATOR = 2;
+    public static final int PERMISSION_OBSERVER = 1;
 
     public static final int REQUEST_FAILED = -1;
     public static final int REQUEST_SUCCESS = 1;

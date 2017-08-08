@@ -150,6 +150,7 @@ CREATE TABLE "devices" (
 	"pseudo_id"	TEXT NOT NULL UNIQUE,
 	"phone_num"	TEXT,
 	"name"	TEXT,
+	"access_level" INTEGER NOT NULL DEFAULT 0,
 	PRIMARY KEY("id")
 );
 COMMIT;

@@ -22,7 +22,16 @@ public class ApiServiceV1 {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/info")
-    public Response info() {
+    public Response info(@HeaderParam("Token") String token) {
+		
+		try {
+            if (!SQLiteClass.checkPermission(token, PERMISSION_OBSERVER))
+                return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.serverError().entity("{\"error\":\"" + e.getMessage() + "\"}").build();
+        }
+		
         JSONObject jsonObject = new JSONObject();
 
         String version = null;
@@ -73,7 +82,7 @@ public class ApiServiceV1 {
     public Response orderGetAll(@HeaderParam("Token") String token) {
 
         try {
-            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+            if (!SQLiteClass.checkPermission(token, PERMISSION_OBSERVER))
                 return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,7 +112,7 @@ public class ApiServiceV1 {
     public Response requestGetAll(@HeaderParam("Token") String token) {
 
         try {
-            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+            if (!SQLiteClass.checkPermission(token, PERMISSION_OBSERVER))
                 return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -189,7 +198,7 @@ public class ApiServiceV1 {
     public Response orderAdd(final String strRequest, @HeaderParam("Token") String token) {
 
         try {
-            if (!SQLiteClass.checkPermission(token, PERMISSION_ADMIN))
+            if (!SQLiteClass.checkPermission(token, PERMISSION_MODERATOR))
                 return Response.status(Response.Status.FORBIDDEN).entity("{\"error\":\"You don't have enough permissions.\"}").build();
         } catch (SQLException e) {
             e.printStackTrace();
