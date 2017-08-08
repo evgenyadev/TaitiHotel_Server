@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 import static main.java.Database.SQLiteClass.PERMISSION_ADMIN;
+import static main.java.Database.SQLiteClass.PERMISSION_MODERATOR;
+import static main.java.Database.SQLiteClass.PERMISSION_OBSERVER;
 
 @Path("/v1")
 public class ApiServiceV1 {
